@@ -1,0 +1,43 @@
+﻿第一个测试数据：
+PROGRAM P;
+VAR x,y;
+PROCEDURE p;
+  VAR a;
+  PROCEDURE q;
+    VAR b;
+    BEGIN(*q*)
+	b:=10;
+    END(*q*);
+  PROCEDURE s;
+    VAR c,d;
+    PROCEDURE r;
+      VAR e,f;
+      BEGIN(*r*)
+	CALL q;
+      END(*r*);
+    BEGIN(*s*)
+      CALL r;
+    END(*s*);
+  BEGIN(*p*)
+    CALL s;
+  END(*p*);
+BEGIN(*main*)
+  CALL p;
+END(*main*).
+第二个测试数据：
+PROGRAM P;
+CONST  a=10;
+VAR    b,c;
+PROCEDURE p;
+  BEGIN
+    c:=b+a;
+  END;
+BEGIN
+  READ(b);
+  WHILE b#0 DO
+  BEGIN;
+    CALL p;
+    WRITE(2*c);
+    READ(b);
+  END
+END.

@@ -1,0 +1,16 @@
+PROGRAM P;
+CONST  a=10;
+VAR    b,c;
+PROCEDURE p;
+  BEGIN
+    c:=b+a;
+  END;
+BEGIN
+  READ(b);
+  WHILE b#0 DO
+  BEGIN;
+    CALL p;
+    WRITE(2*c);
+    READ(b);
+  END
+END.
