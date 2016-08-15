@@ -1,34 +1,34 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 int N;
 int T;
 int data[100000];
-int jihe[100000]; // ´æƒ¦×Ó¼¯ÔªËØ£¬Åcİ”ÈëÙYÁÏŒ¦‘ª£¬ÓÃ1˜ËÓ›
+int jihe[100000]; // å­˜å„²å­é›†å…ƒç´ ï¼Œèˆ‡è¼¸å…¥è³‡æ–™å°æ‡‰ï¼Œç”¨1æ¨™è¨˜
 
 int GetJihe()
 {
-    int p = 0; // Ö¸Ïò®”Ç°Öµ
-    int temp = 0; // ®”Ç°×Ó¼¯ºÏºÍ
+    int p = 0; // æŒ‡å‘ç•¶å‰å€¼
+    int temp = 0; // ç•¶å‰å­é›†åˆå’Œ
     while(p >= 0)
     {
         if(jihe[p]==0)
         {
-            // ßxÖĞ®”Ç°í—
+            // é¸ä¸­ç•¶å‰é …
             jihe[p] = 1;
             temp += data[p];
             if(temp == T)
             {
                 return 1;
             }
-            else if(temp > T) //®”Ç°ºÍ³¬ß^ÁËÄ¿˜ËºÍ£¬ÍË¶ø»ØËİ
+            else if(temp > T) //ç•¶å‰å’Œè¶…éäº†ç›®æ¨™å’Œï¼Œé€€è€Œå›æº¯
             {
                 jihe[p] = 0;
                 temp -= data[p];
             }
             p++;
         }
-        if(p >= N) //ÒÑ½›ËÑË÷µ½×îááÒ»‚€”µ
+        if(p >= N) //å·²ç¶“æœç´¢åˆ°æœ€å¾Œä¸€å€‹æ•¸
         {
             while(jihe[p-1]==1)
             {

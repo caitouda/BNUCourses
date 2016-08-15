@@ -1,18 +1,18 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include<cstdlib>
 #include<ctime>
 using namespace std;
 
 const int  DefaultSize = 10000;
 
-class dataList  			//ÙYÁÏ±íî¶¨Áx
+class dataList  			//è³‡æ–™è¡¨é¡å®šç¾©
 {
 private:
-    int Vector[10000];		//´æƒ¦ÅÅĞòÔªËØµÄÏòÁ¿
-    int maxSize; 			//ÏòÁ¿ÖĞ×î´óÔªËØ‚€”µ
-    int currentSize; 			//®”Ç°ÔªËØ‚€”µ
+    int Vector[10000];		//å­˜å„²æ’åºå…ƒç´ çš„å‘é‡
+    int maxSize; 			//å‘é‡ä¸­æœ€å¤§å…ƒç´ å€‹æ•¸
+    int currentSize; 			//ç•¶å‰å…ƒç´ å€‹æ•¸
 public:
-    dataList (int num)    //˜‹Ôìº¯”µ
+    dataList (int num)    //æ§‹é€ å‡½æ•¸
     {
         for(int i=0; i<num; i++)
         {
@@ -23,7 +23,7 @@ public:
     }
     int Length()
     {
-        return currentSize;    //È¡±íéL¶È
+        return currentSize;    //å–è¡¨é•·åº¦
     }
     void Swap (int& x, int& y)
     {
@@ -31,42 +31,42 @@ public:
         x = y;
         y = temp;
     }
-    int& operator [](int i) 	//È¡µÚi‚€ÔªËØ
+    int& operator [](int i) 	//å–ç¬¬iå€‹å…ƒç´ 
     {
         return Vector[i];
     }
     int Partition (const int low, const int high);
-    //¿ìËÙÅÅĞò„·Ö
+    //å¿«é€Ÿæ’åºåŠƒåˆ†
     int show(int num);
 };
 
 int dataList::Partition (const int low, const int high)
 {
-//ÙYÁÏ±íîµÄ¹²ÓĞº¯”µ
+//è³‡æ–™è¡¨é¡çš„å…±æœ‰å‡½æ•¸
     int pivotpos = low;
-    int pivot = Vector[low];	  //»ùœÊÔªËØ
+    int pivot = Vector[low];	  //åŸºæº–å…ƒç´ 
     for (int i = low+1; i <= high; i++)
-        //™zœyÕû‚€ĞòÁĞ, ßMĞĞ„·Ö
+        //æª¢æ¸¬æ•´å€‹åºåˆ—, é€²è¡ŒåŠƒåˆ†
         if (Vector[i] < pivot)
         {
             pivotpos++;
             if (pivotpos != i)
                 Swap(Vector[pivotpos],Vector[i]);
-        }				//Ğ¡ì¶»ùœÊµÄ½»“Qµ½×ó‚ÈÈ¥
+        }				//å°æ–¼åŸºæº–çš„äº¤æ›åˆ°å·¦å´å»
     Vector[low] = Vector[pivotpos];
-    Vector[pivotpos] = pivot;								//Œ¢»ùœÊÔªËØ¾ÍÎ»
-    return pivotpos;	//·µ»Ø»ùœÊÔªËØÎ»ÖÃ
+    Vector[pivotpos] = pivot;								//å°‡åŸºæº–å…ƒç´ å°±ä½
+    return pivotpos;	//è¿”å›åŸºæº–å…ƒç´ ä½ç½®
 }
 
 void QuickSort (dataList& L, const int left, const int right)
 {
-//Œ¦ÔªËØVector[left], ..., Vector[right]ßMĞĞÅÅĞò,
-//pivot=L.Vector[left]ÊÇ»ùœÊÔªËØ, ÅÅĞò½YÊøááËüµÄ
-//Î»ÖÃÔÚpivotPos, °Ñ…¢¼ÓÅÅĞòµÄĞòÁĞ·Ö³ÉƒÉ²¿·Ö,
-//×óß…ÔªËØµÄÅÅĞò´a¶¼Ğ¡ì¶»òµÈì¶Ëü, ÓÒß…¶¼´óì¶Ëü
-    if (left < right)  		//ÔªËØĞòÁĞéL¶È´óì¶1•r
+//å°å…ƒç´ Vector[left], ..., Vector[right]é€²è¡Œæ’åº,
+//pivot=L.Vector[left]æ˜¯åŸºæº–å…ƒç´ , æ’åºçµæŸå¾Œå®ƒçš„
+//ä½ç½®åœ¨pivotPos, æŠŠåƒåŠ æ’åºçš„åºåˆ—åˆ†æˆå…©éƒ¨åˆ†,
+//å·¦é‚Šå…ƒç´ çš„æ’åºç¢¼éƒ½å°æ–¼æˆ–ç­‰æ–¼å®ƒ, å³é‚Šéƒ½å¤§æ–¼å®ƒ
+    if (left < right)  		//å…ƒç´ åºåˆ—é•·åº¦å¤§æ–¼1æ™‚
     {
-        int pivotpos = L.Partition (left, right);    //„·Ö
+        int pivotpos = L.Partition (left, right);    //åŠƒåˆ†
         QuickSort (L, left, pivotpos-1);
         QuickSort (L, pivotpos+1, right);
     }

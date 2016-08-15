@@ -1,11 +1,11 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<cstring>
 #include<algorithm>
 using namespace std;
 
 int chess[8][8];
-const int dx[]= {1,1,-2,-2,2,2,-1,-1};//ÏÂÒ»²½µÄ×óÓÒ·ÖÁ¿
-const int dy[]= {-2,2,1,-1,1,-1,2,-2};//ÏÂÒ»²½µÄÉÏÏÂ·ÖÁ¿
+const int dx[]= {1,1,-2,-2,2,2,-1,-1};//ä¸‹ä¸€æ­¥çš„å·¦å³åˆ†é‡
+const int dy[]= {-2,2,1,-1,1,-1,2,-2};//ä¸‹ä¸€æ­¥çš„ä¸Šä¸‹åˆ†é‡
 
 struct Node
 {
@@ -31,22 +31,22 @@ int get_t(int x,int y)
     return cnt;
 }
 
-int dfs(int x,int y,int val)//Éî¶ÈƒÏÈËÑË÷ÑİËã·¨,ƒÏÈ×ß·½ÏòÉÙµÄÎ»ÖÃ
+int dfs(int x,int y,int val)//æ·±åº¦å„ªå…ˆæœç´¢æ¼”ç®—æ³•,å„ªå…ˆèµ°æ–¹å‘å°‘çš„ä½ç½®
 {
     if(val>64) return 1;
     Node s[8];
-    for(int i=0; i<8; i++)//Ã¶ÅeÏÂÒ»‚€Î»ÖÃ
+    for(int i=0; i<8; i++)//æšèˆ‰ä¸‹ä¸€å€‹ä½ç½®
     {
         s[i].x=x+dx[i];
         s[i].y=y+dy[i];
         if(s[i].x<0 || s[i].y<0 || s[i].x>=8|| s[i].y>=8) s[i].t=20;
         else if(chess[s[i].x][s[i].y]) s[i].t=20;
-        else s[i].t=get_t(s[i].x,s[i].y);//µÃµ½Ô“Î»ÖÃ,ÓĞ¶àÉÙ‚€¿É×ß·½Ïò
+        else s[i].t=get_t(s[i].x,s[i].y);//å¾—åˆ°è©²ä½ç½®,æœ‰å¤šå°‘å€‹å¯èµ°æ–¹å‘
     }
-    sort(s,s+8,cmp);//ÅÅĞò,[¿É×ß·½ÏòÉÙµÄÎ»ÖÃ]ÔÚÇ°Ãæ
-    for(int i=0; i<2 && s[i].t<20; i++)//ÆÕÍ¨dfsËÑË÷
+    sort(s,s+8,cmp);//æ’åº,[å¯èµ°æ–¹å‘å°‘çš„ä½ç½®]åœ¨å‰é¢
+    for(int i=0; i<2 && s[i].t<20; i++)//æ™®é€šdfsæœç´¢
     {
-        // Ö»ĞèÒªÅÜÇ°2‚€·½Ïò£¨½KücÖ»ÓĞÒ»‚€£¬²»ÄÜÍ¬•r´æÔÚƒÉ‚€·½Ïò¶¼Ÿo·¨µ½ß_£©
+        // åªéœ€è¦è·‘å‰2å€‹æ–¹å‘ï¼ˆçµ‚é»åªæœ‰ä¸€å€‹ï¼Œä¸èƒ½åŒæ™‚å­˜åœ¨å…©å€‹æ–¹å‘éƒ½ç„¡æ³•åˆ°é”ï¼‰
         chess[s[i].x][s[i].y]=val;
         if(dfs(s[i].x,s[i].y,val+1)) return 1;
         chess[s[i].x][s[i].y]=0;
@@ -59,15 +59,15 @@ int main()
     int x,y;
     cout<<"Please input the original place with m&n:"<<endl;
     cin>>x>>y;
-    memset(chess,0,sizeof(chess));//Ã¿‚€¸ñ×ÓµÄ²½”µ³õÊ¼»¯éÁã
+    memset(chess,0,sizeof(chess));//æ¯å€‹æ ¼å­çš„æ­¥æ•¸åˆå§‹åŒ–ç‚ºé›¶
     chess[x][y]=1;
     if(dfs(x,y,2))
-        for(int i=0; i<8; i++)//İ”³öÆå±P
+        for(int i=0; i<8; i++)//è¼¸å‡ºæ£‹ç›¤
         {
             for(int j=0; j<7; j++)
                 cout<<chess[i][j]<<" ";
             cout<<chess[i][7]<<endl;
         }
-    else cout<<"It can't be found."<<endl;//ÕÒ²»µ½
+    else cout<<"It can't be found."<<endl;//æ‰¾ä¸åˆ°
     return 0;
 }

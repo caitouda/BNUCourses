@@ -1,4 +1,4 @@
-#include<stdio.h>
+ï»¿#include<stdio.h>
 using namespace std;
 int n,e[100][100],mark[100];
 int main()
@@ -27,7 +27,7 @@ int main()
     while(T--)
     {
         temp=10000;
-        for(i=1; i<=n; i++)//markí˜ËÓ›ÊÇ·ñÒÑ±»ßxÖÐ
+        for(i=1; i<=n; i++)//markæ¥æ ‡è®°æ˜¯å¦å·²è¢«é€‰ä¸­
         {
             if(mark[i]==1)
                 for(j=1; j<=n; j++)

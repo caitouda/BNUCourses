@@ -1,4 +1,4 @@
-#include "seqlist.h"
+ï»¿#include "seqlist.h"
 #include <cstdlib>
 using namespace std;
 int main()
@@ -11,10 +11,10 @@ int main()
 		s2.Insert(i,a);
 	}
 	s2.Output();
-	cout<<"ÓÐÐò";
+	cout<<"è¡„å”—";
 	s1.Output();
 	int s,t;
-	cout<<"ÊäÈësºÍt:"<<endl;
+	cout<<"æ€€ï µsç¿t:"<<endl;
 	cin>>s>>t;
 	s1.Removett(s,t);
 	s1.Output();

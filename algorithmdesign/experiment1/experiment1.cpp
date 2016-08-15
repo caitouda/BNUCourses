@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 using namespace std;
 
 #define	MAX 10
@@ -7,9 +7,9 @@ int Path[MAX];
 int tempPath[MAX];
 int Cost[MAX][MAX];
 int allCost;
-bool mark[MAX];//˜ËÓ›³ÇÊĞÊÇ·ñÒÑßx
+bool mark[MAX];//æ¨™è¨˜åŸå¸‚æ˜¯å¦å·²é¸
 
-int Input()//İ”Èë³ÇÊĞ”µÄ¿ºÍƒÉ³ÇÊĞÖ®égµÄÙMÓÃ
+int Input()//è¼¸å…¥åŸå¸‚æ•¸ç›®å’Œå…©åŸå¸‚ä¹‹é–“çš„è²»ç”¨
 {
     int num;
     cout<<"Please input the number of the citys:";
@@ -25,7 +25,7 @@ int Input()//İ”Èë³ÇÊĞ”µÄ¿ºÍƒÉ³ÇÊĞÖ®égµÄÙMÓÃ
     return num;
 }
 
-void Output(int cityNum)//İ”³ö×î¶ÌÂ·½Åc×îĞ¡ÙMÓÃ
+void Output(int cityNum)//è¼¸å‡ºæœ€çŸ­è·¯å¾‘èˆ‡æœ€å°è²»ç”¨
 {
     cout<<"The path costs least is:"<<endl;
     for(int i=0; i<cityNum; i++)
@@ -35,7 +35,7 @@ void Output(int cityNum)//İ”³ö×î¶ÌÂ·½Åc×îĞ¡ÙMÓÃ
     cout<<endl<<"The least cost is:"<<allCost<<"yuan"<<endl;
 }
 
-void shortestPath(int Num,int cityNum)//×î¶ÌÂ·½ÑİËã·¨
+void shortestPath(int Num,int cityNum)//æœ€çŸ­è·¯å¾‘æ¼”ç®—æ³•
 {
     int tempCost=0;
     for(int i=0; i<cityNum; i++)
@@ -46,16 +46,16 @@ void shortestPath(int Num,int cityNum)//×î¶ÌÂ·½ÑİËã·¨
             tempPath[cityNum-Num]=i;
             if(Num>1)
             {
-                shortestPath(Num-1,cityNum);//ßfŞ’
+                shortestPath(Num-1,cityNum);//éè¿´
             }
             else
             {
                 for(int j=0; j<cityNum-1; j++)
                 {
-                    tempCost+=Cost[tempPath[j]][tempPath[j+1]];//ËãÙMÓÃ
+                    tempCost+=Cost[tempPath[j]][tempPath[j+1]];//ç®—è²»ç”¨
                 }
 
-                if(tempCost<allCost || allCost==0)//ÕÒµ½×îĞ¡ÙMÓÃµÄÂ·½
+                if(tempCost<allCost || allCost==0)//æ‰¾åˆ°æœ€å°è²»ç”¨çš„è·¯å¾‘
                 {
                     allCost=tempCost;
                     for(int k=0; k<cityNum; k++)

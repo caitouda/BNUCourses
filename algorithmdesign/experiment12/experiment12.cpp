@@ -1,4 +1,4 @@
-#include<stdio.h>
+ï»¿#include<stdio.h>
 #include<cstring>
 using namespace std;
 
@@ -14,17 +14,17 @@ int a[10000],b[10000];
 
 double bound(int i)
 {
-    //Ó‹ËãÉÏ½ç
-    double cleft=c-cw;//Ê£ğNÈİÁ¿
+    //è¨ˆç®—ä¸Šç•Œ
+    double cleft=c-cw;//å‰©é¤˜å®¹é‡
     double bound=cp;
-    //ÒÔÎïÆ·†ÎÎ»ÖØÁ¿ƒrÖµßfœpí˜ĞòÑbÈëÎïÆ·
+    //ä»¥ç‰©å“å–®ä½é‡é‡åƒ¹å€¼éæ¸›é †åºè£å…¥ç‰©å“
     while(i<n&&bao[i].w<=cleft)
     {
         cleft-=bao[i].w;
         bound+=bao[i].p;
         i++;
     }
-    //ÑbM±³°ü
+    //è£æ»¿èƒŒåŒ…
     if(i<n)
     {
         bound+=bao[i].p*cleft/bao[i].w;
@@ -34,7 +34,7 @@ double bound(int i)
 
 void backtrack(int i)
 {
-    if(i==n) //µ½ß_È~½Yüc
+    if(i==n) //åˆ°é”è‘‰çµé»
     {
         if(cp>bestp)
         {
@@ -47,10 +47,10 @@ void backtrack(int i)
         }
         return;
     }
-    //ËÑË÷×Ó˜ä
+    //æœç´¢å­æ¨¹
     if(cw+bao[i].w<=c)
     {
-        //ßMÈë×ó×Ó˜ä
+        //é€²å…¥å·¦å­æ¨¹
         cw+=bao[i].w;
         cp+=bao[i].p;
         a[i]=1;
@@ -60,7 +60,7 @@ void backtrack(int i)
         cp-=bao[i].p;
     }
     if(bound(i+1)>bestp)
-        backtrack(i+1);//ßMÈëÓÒ×Ó˜ä
+        backtrack(i+1);//é€²å…¥å³å­æ¨¹
 }
 
 int main()

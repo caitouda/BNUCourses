@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<cstdio>
 #include<cstdlib>
 using namespace std;
@@ -6,30 +6,30 @@ using namespace std;
 int main()
 {
     int i;
-    int count;//œyÔ‡µÄ´¬ëb”µÁ¿
-    int temp;//Ã¿Ö»´¬µÄµÈ´ı•régµÄÅR•rÖµ
-    int allwaittime;//¿‚µÈ´ı•rég
-    int waitcost;//¿‚µÈ´ıÙMÓÃ
-    float becount=0;//‘ªÔ“½¨µÄ´Î”µ
-    float allcount=0;//œyÔ‡¿‚´Î”µ
-    float percent;//œyÔ‡¸ÅÂÊ
+    int count;//æ¸¬è©¦çš„èˆ¹éš»æ•¸é‡
+    int temp;//æ¯åªèˆ¹çš„ç­‰å¾…æ™‚é–“çš„è‡¨æ™‚å€¼
+    int allwaittime;//ç¸½ç­‰å¾…æ™‚é–“
+    int waitcost;//ç¸½ç­‰å¾…è²»ç”¨
+    float becount=0;//æ‡‰è©²å»ºçš„æ¬¡æ•¸
+    float allcount=0;//æ¸¬è©¦ç¸½æ¬¡æ•¸
+    float percent;//æ¸¬è©¦æ¦‚ç‡
     //int buildcost;
     cout<<"Please input the amount of the ships you want to test:";
     cin>>count;
     cout<<endl;
-    int waittime[count];//µÈ´ı•rég
-    waittime[0]=0;//µÚÒ»ëb´¬µÄµÈ´ı•régéÁã
-    int staytime[count];//Í£Áô•rég
-    int reachtime[count];//ƒÉëb´¬µ½ß_•rég²î£¬šwµ½Ç°Ò»ËÒ´¬ÖĞ
+    int waittime[count];//ç­‰å¾…æ™‚é–“
+    waittime[0]=0;//ç¬¬ä¸€éš»èˆ¹çš„ç­‰å¾…æ™‚é–“ç‚ºé›¶
+    int staytime[count];//åœç•™æ™‚é–“
+    int reachtime[count];//å…©éš»èˆ¹åˆ°é”æ™‚é–“å·®ï¼Œæ­¸åˆ°å‰ä¸€è‰˜èˆ¹ä¸­
     while(1)
     {
-        for(i=0; i<count; i++)//ëS™C®aÉúÍ£Áô•régºÍµ½ß_•rég²î
+        for(i=0; i<count; i++)//éš¨æ©Ÿç”¢ç”Ÿåœç•™æ™‚é–“å’Œåˆ°é”æ™‚é–“å·®
         {
             staytime[i]=4+rand()%40;
             reachtime[i]=15+rand()%30;
         }
         allwaittime=0;
-        for(i=1; i<count; i++)//Ã¿Ö»´¬µÄµÈ´ı•régµÈì¶Ç°Ò»ëb´¬µÄµÈ´ı•rég¼ÓÍ£Áô•régœpµ½ß_•rég²î
+        for(i=1; i<count; i++)//æ¯åªèˆ¹çš„ç­‰å¾…æ™‚é–“ç­‰æ–¼å‰ä¸€éš»èˆ¹çš„ç­‰å¾…æ™‚é–“åŠ åœç•™æ™‚é–“æ¸›åˆ°é”æ™‚é–“å·®
         {
             temp=waittime[i-1]+staytime[i-1]-reachtime[i-1];
             if(temp>0)waittime[i]=temp;
@@ -37,7 +37,7 @@ int main()
             allwaittime=allwaittime+waittime[i];
         }
         //cout<<allwaittime<<endl;
-        waitcost=allwaittime*1000*24*12*5/count;//ÓÃ¿‚´¬ëb”µÅcœyÔ‡´¬ëb”µµÄ±ÈÀıíÇóµÃ¿‚µÈ´ıÙMÓÃ
+        waitcost=allwaittime*1000*24*12*5/count;//ç”¨ç¸½èˆ¹éš»æ•¸èˆ‡æ¸¬è©¦èˆ¹éš»æ•¸çš„æ¯”ä¾‹ä¾†æ±‚å¾—ç¸½ç­‰å¾…è²»ç”¨
         //cout<<waitcost<<endl;
         printf("The %0.f test:",allcount+1);
         printf("The waitcost is %d yuan\n",waitcost);

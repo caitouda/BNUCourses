@@ -1,4 +1,4 @@
-#ifndef MINHEAP_H_INCLUDED
+ï»¿#ifndef MINHEAP_H_INCLUDED
 #define MINHEAP_H_INCLUDED
 #include <iostream>
 #include <algorithm>
@@ -42,7 +42,7 @@ MinHeap<E>::MinHeap (int sz)
     heap = new E[maxHeapSize];
     if (heap == NULL)
     {
-        cerr << "¶Ñ´æ´¢·ÖÅäÊ§°Ü£¡" << endl;
+        cerr << "å‰½æ¹”æ£ç…¦é¥œå›®å•–ã„" << endl;
         exit(1);
     }
     currentSize = 0;
@@ -54,7 +54,7 @@ MinHeap<E>::MinHeap (E arr[], int n)
     heap = new E[maxHeapSize];
     if (heap == NULL)
     {
-        cout << "¶Ñ´æ´¢·ÖÅäÊ§°Ü£¡"<< endl;
+        cout << "å‰½æ¹”æ£ç…¦é¥œå›®å•–ã„"<< endl;
         exit(1);
     }
     for (int i = 0; i < n; i++) heap[i] = arr[i];

@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<stdlib.h>
 #include<iomanip>
 #include<windows.h>
@@ -9,21 +9,21 @@ using namespace std;
 
 struct node
 {
-    int lNumber;//Ò³ºÅ
-    int pNumber;//ÎïÀí¿éºÅ
-    int dNumber;//ÔÚ´ÅÅÌÉÏµÄÎ»ÖÃ
-    int write;//ĞŞ¸Ä±êÖ¾
-    int flag;//´æÔÚ±êÖ¾
+    int lNumber;//é¡µå·
+    int pNumber;//ç‰©ç†å—å·
+    int dNumber;//åœ¨ç£ç›˜ä¸Šçš„ä½ç½®
+    int write;//ä¿®æ”¹æ ‡å¿—
+    int flag;//å­˜åœ¨æ ‡å¿—
 } page[N];
 
-int pageQ[N];//Ò³ÃæÑ­»·¶ÓÁĞ,´æ·ÅÄÚ´æÖĞµÄÒ³Êı
-int next=0;//Ñ­»·¶ÓÁĞÏÂÒ»¸öÒªÖÃ»»µÄÎ»ÖÃ£¬³õÖµÎª0
-int blocks=-1;//¸øpNumberÒÀ´Î¸³Öµ£¬blocksÊÇpageµÄ½Ç±ê
-int n=0;//Õâ¸önÊÇ´´½¨µÄÒ³Êı
+int pageQ[N];//é¡µé¢å¾ªç¯é˜Ÿåˆ—,å­˜æ”¾å†…å­˜ä¸­çš„é¡µæ•°
+int next=0;//å¾ªç¯é˜Ÿåˆ—ä¸‹ä¸€ä¸ªè¦ç½®æ¢çš„ä½ç½®ï¼Œåˆå€¼ä¸º0
+int blocks=-1;//ç»™pNumberä¾æ¬¡èµ‹å€¼ï¼Œblocksæ˜¯pageçš„è§’æ ‡
+int n=0;//è¿™ä¸ªnæ˜¯åˆ›å»ºçš„é¡µæ•°
 
-void show_page(int n)//ÏÔÊ¾Ò³±íÄÚÈİ
+void show_page(int n)//æ˜¾ç¤ºé¡µè¡¨å†…å®¹
 {
-    cout<<"µ±Ç°Ò³±íÄÚÈİÎª£º"<<endl;
+    cout<<"å½“å‰é¡µè¡¨å†…å®¹ä¸ºï¼š"<<endl;
     for(int i=0; i<n; i++)
     {
         cout<<"page["<<i<<"].lNumber="<<page[i].lNumber<<"\t";
@@ -34,52 +34,52 @@ void show_page(int n)//ÏÔÊ¾Ò³±íÄÚÈİ
     cout<<endl;
 }
 
-void page_FIFO(int In)//InÊÇ±»µ÷ÈëµÄpageºÅ£¬²ÉÓÃFIFOÒ³ÃæÌÔÌ­Ëã·¨
+void page_FIFO(int In)//Inæ˜¯è¢«è°ƒå…¥çš„pageå·ï¼Œé‡‡ç”¨FIFOé¡µé¢æ·˜æ±°ç®—æ³•
 {
-    int Out=pageQ[next];//¼ÇÂ¼±»ÖÃ»»³öµÄpageºÅ
-    pageQ[next] = In;//ÔÚ¶ÓÁĞÀïĞèÒª°Ñnext´¦µÄÖµOut»»³ÉIn
+    int Out=pageQ[next];//è®°å½•è¢«ç½®æ¢å‡ºçš„pageå·
+    pageQ[next] = In;//åœ¨é˜Ÿåˆ—é‡Œéœ€è¦æŠŠnextå¤„çš„å€¼Outæ¢æˆIn
     if(page[In].write)
     {
-        cout<<"½«"<<Out<<"Ò³Ğ´»Ø´ÅÅÌµÚ"<<page[Out].dNumber<<"¿é"<<endl;
-        page[Out].write = 0;//ĞŞ¸Ä±ê¼Ç±äÎª0
+        cout<<"å°†"<<Out<<"é¡µå†™å›ç£ç›˜ç¬¬"<<page[Out].dNumber<<"å—"<<endl;
+        page[Out].write = 0;//ä¿®æ”¹æ ‡è®°å˜ä¸º0
     }
-    page[Out].flag  = 0;//ÒÑ±»µ÷³öÄÚ´æ£¬flagÎª0
-    cout<<"ÌÔÌ­Ö÷´æ¿é"<<page[Out].pNumber<<"ÖĞµÄÒ³"<<Out<<"£¬´Ó´ÅÅÌµÚ"<<page[In].dNumber<<"¿éÖĞµ÷ÈëÒ³"<<In<<endl;
-    page[In].flag = 1;//±»µ÷ÈëÄÚ´æ£¬flagÎª1
-    page[In].pNumber = page[Out].pNumber;//½«µ÷³öµÄÄÚ´æ¿éºÅ×ª¸øµ÷ÈëµÄ
-    next=(next+1)%(blocks+1);//ÄÚ´æ×Ü¿éÊıÊÇblocks+1
+    page[Out].flag  = 0;//å·²è¢«è°ƒå‡ºå†…å­˜ï¼Œflagä¸º0
+    cout<<"æ·˜æ±°ä¸»å­˜å—"<<page[Out].pNumber<<"ä¸­çš„é¡µ"<<Out<<"ï¼Œä»ç£ç›˜ç¬¬"<<page[In].dNumber<<"å—ä¸­è°ƒå…¥é¡µ"<<In<<endl;
+    page[In].flag = 1;//è¢«è°ƒå…¥å†…å­˜ï¼Œflagä¸º1
+    page[In].pNumber = page[Out].pNumber;//å°†è°ƒå‡ºçš„å†…å­˜å—å·è½¬ç»™è°ƒå…¥çš„
+    next=(next+1)%(blocks+1);//å†…å­˜æ€»å—æ•°æ˜¯blocks+1
 }
 
-void show_address(int xie,int dizhi)//ÏÔÊ¾ÎïÀíµØÖ·
+void show_address(int xie,int dizhi)//æ˜¾ç¤ºç‰©ç†åœ°å€
 {
     if(dizhi>(n*1024-1))
     {
-        cout<<"²»´æÔÚ¸ÃÒ³£¡"<<endl;//²é¿´Âß¼­µØÖ·ÊÇ·ñÔ½½ç
+        cout<<"ä¸å­˜åœ¨è¯¥é¡µï¼"<<endl;//æŸ¥çœ‹é€»è¾‘åœ°å€æ˜¯å¦è¶Šç•Œ
         return;
     }
     int logic_addr,ye,weiyi;
-    ye=int(dizhi/1024);//Ò³
-    weiyi=dizhi%1024;//Ò³ÃæÎ»ÒÆ
+    ye=int(dizhi/1024);//é¡µ
+    weiyi=dizhi%1024;//é¡µé¢ä½ç§»
     page[ye].write=xie;
 
     if (page[ye].flag==0)
     {
-        cout<<"·ÃÎÊµÄ"<<ye<<"Ò³²»ÔÚÄÚ´æ£¬·¢ÉúÈ±Ò³ÖĞ¶Ï"<<endl;
+        cout<<"è®¿é—®çš„"<<ye<<"é¡µä¸åœ¨å†…å­˜ï¼Œå‘ç”Ÿç¼ºé¡µä¸­æ–­"<<endl;
         page_FIFO(ye);
     }
     logic_addr = page[ye].pNumber * 1024 + weiyi;
-    cout<<"Âß¼­µØÖ·ÊÇ£º"<<dizhi<<"¶ÔÓ¦µÄµØÖ·ÊÇ£º"<<logic_addr<<endl;
+    cout<<"é€»è¾‘åœ°å€æ˜¯ï¼š"<<dizhi<<"å¯¹åº”çš„åœ°å€æ˜¯ï¼š"<<logic_addr<<endl;
 }
 
 int main()
 {
-    cout<<endl<<"ÊäÈëÒ³±íµÄĞÅÏ¢£¬´´½¨Ò³±í£¨ÈôÊäÈëÎª-1£¬Ôò½áÊøÊäÈë£©"<<endl<<endl;
+    cout<<endl<<"è¾“å…¥é¡µè¡¨çš„ä¿¡æ¯ï¼Œåˆ›å»ºé¡µè¡¨ï¼ˆè‹¥è¾“å…¥ä¸º-1ï¼Œåˆ™ç»“æŸè¾“å…¥ï¼‰"<<endl<<endl;
     int in_num=0;
-    while(in_num!=-1)//¸¨´æµØÖ·Îª-1½áÊø
+    while(in_num!=-1)//è¾…å­˜åœ°å€ä¸º-1ç»“æŸ
     {
-        cout<<"ÊäÈëµÚ"<<n<<"Ò³µÄ¸¨´æµØÖ·£º";
+        cout<<"è¾“å…¥ç¬¬"<<n<<"é¡µçš„è¾…å­˜åœ°å€ï¼š";
         cin>>in_num;
-        page[n].dNumber=in_num;//¼ÇÂ¼¸¨´æ£¬¼´´ÅÅÌÉÏµÄÎ»ÖÃ
+        page[n].dNumber=in_num;//è®°å½•è¾…å­˜ï¼Œå³ç£ç›˜ä¸Šçš„ä½ç½®
         page[n].lNumber=n;
         page[n].pNumber=0;
         page[n].write=0;
@@ -88,30 +88,30 @@ int main()
     }
     n=n-1;
     show_page(n);
-    cout<<endl<<"ÊäÈëÖ÷´æ¿éºÅ£¬Ö÷´æ¿éÒªĞ¡ÓÚµÈÓÚ"<<n<<"£¬£¨ÒÔ-1½áÊø£©£º";
+    cout<<endl<<"è¾“å…¥ä¸»å­˜å—å·ï¼Œä¸»å­˜å—è¦å°äºç­‰äº"<<n<<"ï¼Œï¼ˆä»¥-1ç»“æŸï¼‰ï¼š";
 
     cin>>in_num;
     while(in_num!=-1)
     {
-        blocks++;//´Ó0¿ªÊ¼
-        page[blocks].pNumber=in_num;//¿éºÅ´æÈë
+        blocks++;//ä»0å¼€å§‹
+        page[blocks].pNumber=in_num;//å—å·å­˜å…¥
         page[blocks].flag=1;
         cin>>in_num;
     }
     show_page(n);
 
-    for(int i=0; i<=blocks; i++)//¼ÇÂ¼´æÈë¶ÓÁĞµÄ¿é
+    for(int i=0; i<=blocks; i++)//è®°å½•å­˜å…¥é˜Ÿåˆ—çš„å—
         pageQ[i]=i;
 
     int in_write,in_addr;
-    cout<<endl<<"ÊäÈëÖ¸ÁîĞÔÖÊ£¨1-ĞŞ¸Ä£¬0-²»ĞŞ¸Ä£¬2-½áÊø³ÌĞòÔËĞĞ£©ºÍÂß¼­µØÖ·£º";
+    cout<<endl<<"è¾“å…¥æŒ‡ä»¤æ€§è´¨ï¼ˆ1-ä¿®æ”¹ï¼Œ0-ä¸ä¿®æ”¹ï¼Œ2-ç»“æŸç¨‹åºè¿è¡Œï¼‰å’Œé€»è¾‘åœ°å€ï¼š";
     cin>>in_write;
     cin>>in_addr;
-    while(in_write!=2)//2½áÊø³ÌĞòÔËĞĞ
+    while(in_write!=2)//2ç»“æŸç¨‹åºè¿è¡Œ
     {
         show_address(in_write,in_addr);
         //show_page(n);
-        cout<<endl<<"ÊäÈëÖ¸ÁîĞÔÖÊ£¨1-ĞŞ¸Ä£¬0-²»ĞŞ¸Ä£¬2-½áÊø³ÌĞòÔËĞĞ£©ºÍÂß¼­µØÖ·£º";
+        cout<<endl<<"è¾“å…¥æŒ‡ä»¤æ€§è´¨ï¼ˆ1-ä¿®æ”¹ï¼Œ0-ä¸ä¿®æ”¹ï¼Œ2-ç»“æŸç¨‹åºè¿è¡Œï¼‰å’Œé€»è¾‘åœ°å€ï¼š";
         cin>>in_write;
         cin>>in_addr;
     }

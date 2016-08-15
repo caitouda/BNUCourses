@@ -1,4 +1,4 @@
-#include<stdio.h>
+ï»¿#include<stdio.h>
 using namespace std;
 int n,e[100][100],jihe[100];
 int main()
@@ -34,7 +34,7 @@ int main()
         }
         printf("add the edge of %d and %d\n",ti,tj);
         e[ti][tj]=0;
-        if(jihe[ti]<=jihe[tj])//¸üÐÂ¼ÓÈëµÄücËùŒÙµÄ¼¯ºÏ£¬ÒÔÝ^Ð¡Öµžé×¼
+        if(jihe[ti]<=jihe[tj])//æ›´æ–°åŠ å…¥çš„é»žæ‰€å±¬çš„é›†åˆï¼Œä»¥è¼ƒå°å€¼ç‚ºå‡†
         {
             for(i=1; i<=n; i++)
             {

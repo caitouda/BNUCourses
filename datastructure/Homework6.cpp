@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #include <cstring>
 #include <queue>
@@ -10,43 +10,43 @@ const int MAX=100;
 const int INF=1000000;
 struct Edge
 {
-    int st_id,en_id;//ÆğïwºÍé_Íù³ÇÊĞµÄ´úÌ–
-    int st_time[2];//ÆğÊ¼•rég
-    int  en_time[2];//½YÊø•rég
-    double cost;//ÙMÓÃ
-    int number;//º½°à™CÌ–
+    int st_id,en_id;//èµ·é£›å’Œé–‹å¾€åŸå¸‚çš„ä»£è™Ÿ
+    int st_time[2];//èµ·å§‹æ™‚é–“
+    int  en_time[2];//çµæŸæ™‚é–“
+    double cost;//è²»ç”¨
+    int number;//èˆªç­æ©Ÿè™Ÿ
 };
 struct Vertex
 {
-    int id;//í”ücµÄid
-    string name;//³ÇÊĞÃû·Q
+    int id;//é ‚é»çš„id
+    string name;//åŸå¸‚åç¨±
 };
 
-class Graph//Ö»´æƒ¦ß…ºÍí”üc£¬Ïà»¥µÄêP‚SÍ¨ß^ß…íŒ¤ÕÒ
+class Graph//åªå­˜å„²é‚Šå’Œé ‚é»ï¼Œç›¸äº’çš„é—œä¿‚é€šéé‚Šä¾†å°‹æ‰¾
 {
 private:
     int num_vertex,num_edge;
     Vertex vertex[MAX];
     Edge edge[MAX];
-    int pre[MAX];//Ç°òŒ
+    int pre[MAX];//å‰é©…
 public:
-    void Inita();//³õÊ¼»¯£¬°ÑÂ·¾€ÒÔ¼°º½°àµÄÙYÓ´æßMˆDÑeÃæ
-    int get_trantime(const Edge e);//µÃµ½³Ëº½°àµÄ•rég
-    int  st_search(const string s);//Œ¤ÕÒí”ücµÄid
-    void min_time(const string n1,const string n2);//×îÉÙ•rég
-    void  min_cost(const string n1,const string n2);//×îĞ¡ÙMÓÃ
-    void min_trans(const string n1,const string n2);//×îÉÙŞD“Q´Î”µ
-    void  Dijkstra(const string s,const int u,const int v);//×î¶ÌÂ·ÑİËã·¨
-    void path(const int u,const int fir,const int sec);//İ”³ö×î¶ÌÂ·½
+    void Inita();//åˆå§‹åŒ–ï¼ŒæŠŠè·¯ç·šä»¥åŠèˆªç­çš„è³‡è¨Šå­˜é€²åœ–è£¡é¢
+    int get_trantime(const Edge e);//å¾—åˆ°ä¹˜èˆªç­çš„æ™‚é–“
+    int  st_search(const string s);//å°‹æ‰¾é ‚é»çš„id
+    void min_time(const string n1,const string n2);//æœ€å°‘æ™‚é–“
+    void  min_cost(const string n1,const string n2);//æœ€å°è²»ç”¨
+    void min_trans(const string n1,const string n2);//æœ€å°‘è½‰æ›æ¬¡æ•¸
+    void  Dijkstra(const string s,const int u,const int v);//æœ€çŸ­è·¯æ¼”ç®—æ³•
+    void path(const int u,const int fir,const int sec);//è¼¸å‡ºæœ€çŸ­è·¯å¾‘
 };
 
 void Graph::Inita()
 {
-    num_vertex=8,num_edge=16;//³ÇÊĞ”µÁ¿ º½°à”µ
+    num_vertex=8,num_edge=16;//åŸå¸‚æ•¸é‡ èˆªç­æ•¸
     string s[9]= {"Shanghai","Beijing","Wuhan",
                   "Lasa","Kunming","Guangzhou","Xian","Wulumuqi"
                  };
-    for(int i=1; i<=num_vertex; i++)//İ”Èë³ÇÊĞÃû·Q
+    for(int i=1; i<=num_vertex; i++)//è¼¸å…¥åŸå¸‚åç¨±
     {
         vertex[i].name=s[i-1];
         vertex[i].id=i;
@@ -61,11 +61,11 @@ void Graph::Inita()
                      };
     for(int i=1; i<=num_edge; i++)
     {
-        edge[i].number=num[i];//º½°à¸½ÉÏ™CÌ–
-        string n1=beg[i],n2;//n1¸½ÉÏÆğïw³ÇÊĞ´úÌ–
-        if(i%2==0)n2=beg[i-1];//n2¸½ÉÏé_Íù³ÇÊĞ´úÌ–
+        edge[i].number=num[i];//èˆªç­é™„ä¸Šæ©Ÿè™Ÿ
+        string n1=beg[i],n2;//n1é™„ä¸Šèµ·é£›åŸå¸‚ä»£è™Ÿ
+        if(i%2==0)n2=beg[i-1];//n2é™„ä¸Šé–‹å¾€åŸå¸‚ä»£è™Ÿ
         else n2=beg[i+1];
-        for(int j=1; j<=num_vertex; j++)//µÃµ½ËùÓĞ³ÇÊĞÔÚÆğïwºÍé_ÍùÏÂµÄ´úÌ–
+        for(int j=1; j<=num_vertex; j++)//å¾—åˆ°æ‰€æœ‰åŸå¸‚åœ¨èµ·é£›å’Œé–‹å¾€ä¸‹çš„ä»£è™Ÿ
         {
             if(n1==vertex[j].name)
             {
@@ -107,83 +107,83 @@ void Graph::Inita()
                     8 ,45,
                     11 ,25,
                     13 ,5
-                   };//•rá˜ºÍ·Öá˜
+                   };//æ™‚é‡å’Œåˆ†é‡
     int top=0;
     for(int i=1; i<=num_edge; i++)
     {
         for(int j=0; j<=1; j++)
-            edge[i].st_time[j]=st[top][j];//±ÈÈç´æ16, 20,
+            edge[i].st_time[j]=st[top][j];//æ¯”å¦‚å­˜16, 20,
         ++top;
         for(int j=0; j<=1; j++)
-            edge[i].en_time[j]=st[top][j];//±ÈÈç17 ,25,
+            edge[i].en_time[j]=st[top][j];//æ¯”å¦‚17 ,25,
         ++top;
-    }//µÃµ½Æğïw•régºÍµ½ß_•rég
+    }//å¾—åˆ°èµ·é£›æ™‚é–“å’Œåˆ°é”æ™‚é–“
     int cost[16]= {680 ,680 ,1150 ,1150,
                    930, 930, 1320, 1320,
                    830 ,830, 890, 890,
                    1480,  1480, 810 , 810
                   };
     for(int i=1; i<=num_edge; i++)
-        edge[i].cost=cost[i-1];//µÃµ½Ã¿·Nº½°àµÄÙMÓÃ
+        edge[i].cost=cost[i-1];//å¾—åˆ°æ¯ç¨®èˆªç­çš„è²»ç”¨
 }
 
-int Graph :: get_trantime(const Edge e)//Ó‹Ëãß@´Îº½°à»¨ÙMµÄ•rég
+int Graph :: get_trantime(const Edge e)//è¨ˆç®—é€™æ¬¡èˆªç­èŠ±è²»çš„æ™‚é–“
 {
     int end1=e.en_time[0],end2=e.en_time[1];
     int st1=e.st_time[0],st2=e.st_time[1];
     return (end1*60+end2-st1*60-st2);
 }
-int  Graph::st_search(const string s)//¸ù“ş³ÇÊĞÃû·QÕÒµ½Œ¦‘ªµÄ´úÌ–
+int  Graph::st_search(const string s)//æ ¹æ“šåŸå¸‚åç¨±æ‰¾åˆ°å°æ‡‰çš„ä»£è™Ÿ
 {
     for(int i=1; i<=num_vertex; i++)
         if(vertex[i].name==s)return vertex[i].id;
     return 0;
 }
-void Graph::min_time(const string n1,const string n2)//×î¶Ì•rég
+void Graph::min_time(const string n1,const string n2)//æœ€çŸ­æ™‚é–“
 {
     int u=st_search(n1);
     int v=st_search(n2);
-    if(u==0||v==0)//ÕÒ²»µ½Œ¦‘ªµÄ³ÇÊĞÃû·Q
+    if(u==0||v==0)//æ‰¾ä¸åˆ°å°æ‡‰çš„åŸå¸‚åç¨±
     {
-        cout<<"Œ¦²»Æğ£¬Äúİ”Èë³ÇÊĞÃû·QÓĞÕ`£¡\n";
+        cout<<"å°ä¸èµ·ï¼Œæ‚¨è¼¸å…¥åŸå¸‚åç¨±æœ‰èª¤ï¼\n";
         return ;
     }
     Dijkstra("time",u,v);
 }
-void Graph:: min_cost(const string n1,const string n2)//×î¶ÌÙMÓÃ
+void Graph:: min_cost(const string n1,const string n2)//æœ€çŸ­è²»ç”¨
 {
     int u=st_search(n1);
     int v=st_search(n2);
-    if(u==0||v==0)//ÕÒ²»µ½Œ¦‘ªµÄ³ÇÊĞÃû·Q
+    if(u==0||v==0)//æ‰¾ä¸åˆ°å°æ‡‰çš„åŸå¸‚åç¨±
     {
-        cout<<"Œ¦²»Æğ£¬Äúİ”Èë³ÇÊĞÃû·QÓĞÕ`£¡\n";
+        cout<<"å°ä¸èµ·ï¼Œæ‚¨è¼¸å…¥åŸå¸‚åç¨±æœ‰èª¤ï¼\n";
         return ;
     }
     cout<<u<<" "<<v<<endl;
     Dijkstra("cost",u,v);
 }
-void Graph :: min_trans(const string n1,const string n2)//×îÉÙŞD“Q´Î”µ
+void Graph :: min_trans(const string n1,const string n2)//æœ€å°‘è½‰æ›æ¬¡æ•¸
 {
     int u=st_search(n1);
     int v=st_search(n2);
-    if(u==0||v==0)//ÕÒ²»µ½Œ¦‘ªµÄ³ÇÊĞÃû·Q
+    if(u==0||v==0)//æ‰¾ä¸åˆ°å°æ‡‰çš„åŸå¸‚åç¨±
     {
-        cout<<"Œ¦²»Æğ£¬Äúİ”Èë³ÇÊĞÃû·QÓĞÕ`£¡\n";
+        cout<<"å°ä¸èµ·ï¼Œæ‚¨è¼¸å…¥åŸå¸‚åç¨±æœ‰èª¤ï¼\n";
         return ;
     }
     Dijkstra("trans",u,v);
 }
 
-void Graph:: Dijkstra(const string s,const int u,const int v)//×î¶ÌÂ·½µÄDijkstraÑİËã·¨
+void Graph:: Dijkstra(const string s,const int u,const int v)//æœ€çŸ­è·¯å¾‘çš„Dijkstraæ¼”ç®—æ³•
 {
     int dis[MAX],vis[MAX],second;
-    memset(pre,0,sizeof(pre));//³õÊ¼»¯
+    memset(pre,0,sizeof(pre));//åˆå§‹åŒ–
     memset(dis,INF,sizeof(dis));
     memset(vis,0,sizeof(vis));
     dis[u]=0;
     vis[u]=1;
     pre[u]=-1;
-    for(int i=1; i<=num_edge; i++)//µÃµ½Â·½ÉÏµÄ™àÖµ
+    for(int i=1; i<=num_edge; i++)//å¾—åˆ°è·¯å¾‘ä¸Šçš„æ¬Šå€¼
     {
         int en=edge[i].en_id;
         if(edge[i].st_id==u)
@@ -197,7 +197,7 @@ void Graph:: Dijkstra(const string s,const int u,const int v)//×î¶ÌÂ·½µÄDijkstr
         }
 
     }
-    for(int i=1; i<num_vertex; i++)//ßx“ñ²»ÔÚ¼¯ºÏÑeÓĞ×î¶ÌÂ·½µÄüc
+    for(int i=1; i<num_vertex; i++)//é¸æ“‡ä¸åœ¨é›†åˆè£¡æœ‰æœ€çŸ­è·¯å¾‘çš„é»
     {
         int min=INF,fir=u;
         for(int j=1; j<=num_vertex; j++)
@@ -218,21 +218,21 @@ void Graph:: Dijkstra(const string s,const int u,const int v)//×î¶ÌÂ·½µÄDijkstr
                 break;
             }
         }
-        for(int j=1; j<=num_edge; j++)//ĞŞ¸Ä
+        for(int j=1; j<=num_edge; j++)//ä¿®æ”¹
         {
             if(edge[j].st_id==fir&&(!vis[edge[j].en_id]))
             {
                 int val,sec=edge[j].en_id;
                 if(s=="time")
                 {
-                    //ÌÀíÊÇ·ñÓĞ³ö¬F•rég½»åeµÄÇé›r
+                    //è™•ç†æ˜¯å¦æœ‰å‡ºç¾æ™‚é–“äº¤éŒ¯çš„æƒ…æ³
                     int fir_fir=edge[e].en_time[0],fir_sec=edge[e].en_time[1];
                     int sec_fir=edge[j].st_time[0],sec_sec=edge[j].st_time[1];
                     if(fir_fir>sec_fir||(fir_fir==sec_fir&&fir_sec>sec_sec))
                         val=24*60-fir_fir*60-fir_sec+sec_fir*60+sec_sec*60;
                 }
-                else if(s=="cost")val=edge[j].cost;//ÌÀíÙMÓÃ
-                else val=1;//ÌÀíŞD“Q´Î”µ
+                else if(s=="cost")val=edge[j].cost;//è™•ç†è²»ç”¨
+                else val=1;//è™•ç†è½‰æ›æ¬¡æ•¸
                 if(dis[sec]>dis[fir]+val)
                 {
                     dis[sec]=dis[fir]+val;
@@ -242,27 +242,27 @@ void Graph:: Dijkstra(const string s,const int u,const int v)//×î¶ÌÂ·½µÄDijkstr
         }
     }
 
-    path(u,pre[v],v);//İ”³ö×î¶ÌÂ·½
+    path(u,pre[v],v);//è¼¸å‡ºæœ€çŸ­è·¯å¾‘
 }
 
-void Graph::path(const int u,const int fir,const int sec)//İ”³ö×î¶ÌÂ·½
+void Graph::path(const int u,const int fir,const int sec)//è¼¸å‡ºæœ€çŸ­è·¯å¾‘
 {
     if(fir==-1)
         return ;
     path(u,pre[fir],fir);
-    cout<<"Æğüc£º"<<vertex[fir].name<<"---->"<<"é_Íù£º"<<vertex[sec].name<<":\n";
+    cout<<"èµ·é»ï¼š"<<vertex[fir].name<<"---->"<<"é–‹å¾€ï¼š"<<vertex[sec].name<<":\n";
     int i;
     for(i=1; i<=num_edge; i++)
     {
         if(edge[i].st_id==fir&&edge[i].en_id==sec)
             break;
     }
-    cout<<"º½°à™C´Î£º"<<edge[i].number<<endl;
-    cout<<"³ö°l•rég£º";
-    int a[4];//µÃµ½•rég
+    cout<<"èˆªç­æ©Ÿæ¬¡ï¼š"<<edge[i].number<<endl;
+    cout<<"å‡ºç™¼æ™‚é–“ï¼š";
+    int a[4];//å¾—åˆ°æ™‚é–“
     a[0]=edge[i].st_time[0],a[1]=edge[i].st_time[1];
     a[2]=edge[i].en_time[0],a[3]=edge[i].en_time[1];
-    for(int i=0; i<2; i++)//İ”³öµ½ß_•rég
+    for(int i=0; i<2; i++)//è¼¸å‡ºåˆ°é”æ™‚é–“
     {
 
         if(a[i]==0)
@@ -277,7 +277,7 @@ void Graph::path(const int u,const int fir,const int sec)//İ”³ö×î¶ÌÂ·½
         if(i==0)cout<<":";
     }
     cout<<endl;
-    cout<<"µ½ß_•rég£º";
+    cout<<"åˆ°é”æ™‚é–“ï¼š";
     for(int i=2; i<=3; i++)
     {
         if(a[i]==0)cout<<"00";
@@ -285,25 +285,25 @@ void Graph::path(const int u,const int fir,const int sec)//İ”³ö×î¶ÌÂ·½
         else cout<<a[i];
         if(i==2)cout<<":";
     }
-    cout<<endl;//İ”³öËù»¨ÙMÓÃ
-    cout<<"Æ±ƒr£º"<<edge[i].cost<<endl;
+    cout<<endl;//è¼¸å‡ºæ‰€èŠ±è²»ç”¨
+    cout<<"ç¥¨åƒ¹ï¼š"<<edge[i].cost<<endl;
     cout<<endl;
 }
 int main(void)
 {
     Graph graph;
     graph.Inita();
-    cout<<"ÓĞ°Ë×ù³ÇÊĞ¹©Äúßx“ñ£ºShanghai,Beijing,Wuhan,Lasa,Kunming,Guangzhou,Xian,Wulumuqi\n";
+    cout<<"æœ‰å…«åº§åŸå¸‚ä¾›æ‚¨é¸æ“‡ï¼šShanghai,Beijing,Wuhan,Lasa,Kunming,Guangzhou,Xian,Wulumuqi\n";
     cout<<endl;
-    cout<<"ÓĞÈı·N×îƒ›Q²ß·½°¸¹©Äúßx“ñ£º\n£¨1£©•rég×î¶Ì£¨2£©ÙMÓÃ×îĞ¡£¨3£©ÖĞŞD´Î”µ×îÉÙ\n";
+    cout<<"æœ‰ä¸‰ç¨®æœ€å„ªæ±ºç­–æ–¹æ¡ˆä¾›æ‚¨é¸æ“‡ï¼š\nï¼ˆ1ï¼‰æ™‚é–“æœ€çŸ­ï¼ˆ2ï¼‰è²»ç”¨æœ€å°ï¼ˆ3ï¼‰ä¸­è½‰æ¬¡æ•¸æœ€å°‘\n";
     while(1)
     {
         int n;
         string n1,n2;
         char ch;
-        cout<<"Õˆİ”ÈëÄãßx“ñµÄÆğücÅc½Küc£º";
+        cout<<"è«‹è¼¸å…¥ä½ é¸æ“‡çš„èµ·é»èˆ‡çµ‚é»ï¼š";
         cin>>n1>>n2;
-        cout<<"Õˆİ”ÈëÄúßx“ñµÄ·½°¸¾Ì–£º";
+        cout<<"è«‹è¼¸å…¥æ‚¨é¸æ“‡çš„æ–¹æ¡ˆç·¨è™Ÿï¼š";
         cin>>n;
         if(n==1)
             graph.min_time(n1,n2);
@@ -311,12 +311,12 @@ int main(void)
             graph.min_cost(n1,n2);
         else if(n==3)
             graph.min_trans(n1,n2);
-        else cout<<"Äãßx“ñµÄ·½°¸ÓĞÕ`£¡"<<endl;
-        cout<<"Õˆ†–Äúß€Ïë²éÔƒ†á£¿£¨y/n):";
+        else cout<<"ä½ é¸æ“‡çš„æ–¹æ¡ˆæœ‰èª¤ï¼"<<endl;
+        cout<<"è«‹å•æ‚¨é‚„æƒ³æŸ¥è©¢å—ï¼Ÿï¼ˆy/n):";
         cin>>ch;
         if(ch=='n'||ch=='N')
         {
-            cout<<endl<<"¸ĞÖxÄúµÄ²éÔƒ";
+            cout<<endl<<"æ„Ÿè¬æ‚¨çš„æŸ¥è©¢";
             return 0;
         }
         else continue;

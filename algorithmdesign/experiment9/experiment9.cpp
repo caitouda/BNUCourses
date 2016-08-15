@@ -1,12 +1,12 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 int n;
-int s[100][100];//Ó›ä›Ã¿Ò»·NÇé›rÏÂµÄ¸ù½Yüc
-double a[100],b[100],m[100][100],w[100][100];//Ó›ä›Ïà‘ªµÄÖµ,aé·ÇÈ~½Yüc¸ÅÂÊ,béÈ~½Yüc¸ÅÂÊ
-double p[100];//´æÈ¡ÓĞĞò¼¯µÄÙYÁÏÔªËØ
+int s[100][100];//è¨˜éŒ„æ¯ä¸€ç¨®æƒ…æ³ä¸‹çš„æ ¹çµé»
+double a[100],b[100],m[100][100],w[100][100];//è¨˜éŒ„ç›¸æ‡‰çš„å€¼,aç‚ºéè‘‰çµé»æ¦‚ç‡,bç‚ºè‘‰çµé»æ¦‚ç‡
+double p[100];//å­˜å–æœ‰åºé›†çš„è³‡æ–™å…ƒç´ 
 
-void BinaryTree()//×îƒ¶ş²æËÑŒ¤˜äµÄ„Ó‘BÒ„ÑİËã·¨
+void BinaryTree()//æœ€å„ªäºŒå‰æœå°‹æ¨¹çš„å‹•æ…‹è¦åŠƒæ¼”ç®—æ³•
 {
     int i,j,r;
     for(i = 0; i <= n; i++)
@@ -23,9 +23,9 @@ void BinaryTree()//×îƒ¶ş²æËÑŒ¤˜äµÄ„Ó‘BÒ„ÑİËã·¨
             m[i][j] = m[i+1][j];
             s[i][j] = i;
 
-            for(int k = i + 1; k <= j; k++)//Œ¤ÕÒiµ½jµÄ¸ùk,Œ¤ÕÒ min{m[i][k-1] + m[k+1][j]}
+            for(int k = i + 1; k <= j; k++)//å°‹æ‰¾iåˆ°jçš„æ ¹k,å°‹æ‰¾ min{m[i][k-1] + m[k+1][j]}
             {
-                double t = m[i][k-1] + m[k+1][j];//¸ù¹ücÊÇk
+                double t = m[i][k-1] + m[k+1][j];//æ ¹ç¯€é»æ˜¯k
                 if(t < m[i][j])
                 {
                     m[i][j] = t;
@@ -38,7 +38,7 @@ void BinaryTree()//×îƒ¶ş²æËÑŒ¤˜äµÄ„Ó‘BÒ„ÑİËã·¨
     }
 }
 
-void Show(int left, int right)//İ”³ö×îƒ¶ş²æËÑŒ¤˜äµÄÏàêPÙYÓ,ßfŞ’ºô½Ğİ”³ö¡£
+void Show(int left, int right)//è¼¸å‡ºæœ€å„ªäºŒå‰æœå°‹æ¨¹çš„ç›¸é—œè³‡è¨Š,éè¿´å‘¼å«è¼¸å‡ºã€‚
 {
     int k = s[left][right];
     cout<<p[k]<<endl;
@@ -62,9 +62,9 @@ int main()
     cout<<"Please id of elements:"<<endl;
     for(i = 1; i <= n; i++) cin>>p[i];
     cout<<"The probability of leaf nodes"<<endl;
-    for(i = 1; i <= n; i++) cin>>b[i];//İ”ÈëÈ~¹üc
+    for(i = 1; i <= n; i++) cin>>b[i];//è¼¸å…¥è‘‰ç¯€é»
     cout<<"The probability of non-leaf nodes"<<endl;
-    for(i = 0; i <= n; i++) cin>>a[i];//İ”Èë·ÇÈ~¹üc
+    for(i = 0; i <= n; i++) cin>>a[i];//è¼¸å…¥éè‘‰ç¯€é»
     BinaryTree();
     cout<<endl<<"The average length of the optimal binary search tree is:"<<m[1][n]<<endl<<endl;
     cout<<"the first one is the root node, followed by its left subtree nodes and right subtree nodes"<<endl<<endl;

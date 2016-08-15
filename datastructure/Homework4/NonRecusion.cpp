@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <cstring>
 using namespace  std;
 int n;
@@ -9,7 +9,7 @@ int q[100];
 int num=1;
 void print()
 {
-    cout<<"µÚ"<<num<<"·NÇé›r:"<<endl;
+    cout<<"è´"<<num<<"æ„ïž–î¬¼:"<<endl;
     for(int i=0; i<n; i++)
     {
         for(int j=0; j<n; j++)
@@ -28,7 +28,7 @@ int main()
     int j;
     int flag=0;
     memset(q,-1,sizeof(q));
-    cout<<"Ý”Èën:"<<endl;
+    cout<<"?ï µn:"<<endl;
     cin>>n;
     while(i>=0)
     {

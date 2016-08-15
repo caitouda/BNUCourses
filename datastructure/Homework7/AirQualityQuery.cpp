@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <fstream>
 #include <string>
 #include <iomanip>
@@ -13,37 +13,37 @@
 
 using namespace std;
 
-enum QUERY_TYPE {FOR_DAY,FOR_WEEK,FOR_MONTH,FOR_QUARTER,FOR_YEAR};//îĞÍ Ìì ÖÜ ÔÂ ¼¾¶È Äê
-enum MONTH {JAN=1,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC};//ÔÂ·İ
-enum QUARTER {FIRST=1,SECOND,THIRD,FOURTH};//ËÄ‚€¼¾¶È
-int monthday[13]= {0,31,28,31,30,31,30,31,31,30,31,30,31}; //Ó›ä›Ã¿ÔÂÌì”µ
+enum QUERY_TYPE {FOR_DAY,FOR_WEEK,FOR_MONTH,FOR_QUARTER,FOR_YEAR};//é¡å‹ å¤© å‘¨ æœˆ å­£åº¦ å¹´
+enum MONTH {JAN=1,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC};//æœˆä»½
+enum QUARTER {FIRST=1,SECOND,THIRD,FOURTH};//å››å€‹å­£åº¦
+int monthday[13]= {0,31,28,31,30,31,30,31,31,30,31,30,31}; //è¨˜éŒ„æ¯æœˆå¤©æ•¸
 
 class City
 {
 public:
-    string city_Name;//³ÇÊĞÃû·Q
-    string city_ID;//³ÇÊĞ¾Ì–
-    string pollute_Type;//ÎÛÈ¾îĞÍ
-    int pollute_Value;//ÎÛÈ¾Öµ
-    string polluteLevelRome;//Á_ñRµÈ¼‰
-    string polluteLevel;//µÈ¼‰
+    string city_Name;//åŸå¸‚åç¨±
+    string city_ID;//åŸå¸‚ç·¨è™Ÿ
+    string pollute_Type;//æ±¡æŸ“é¡å‹
+    int pollute_Value;//æ±¡æŸ“å€¼
+    string polluteLevelRome;//ç¾…é¦¬ç­‰ç´š
+    string polluteLevel;//ç­‰ç´š
     int year;
     int month;
     int day;
 public:
-    friend istream& operator >> (istream& is, City& city)//ÖØİdİ”Èë
+    friend istream& operator >> (istream& is, City& city)//é‡è¼‰è¼¸å…¥
     {
         is>>city.city_ID>>city.city_Name>>city.pollute_Type>>city.pollute_Value>>city.polluteLevelRome>>city.polluteLevel
         >>city.year>>city.month>>city.day;
         return is;
     }
-    friend ostream& operator << (ostream& os,City& city)//ÖØİdİ”³ö
+    friend ostream& operator << (ostream& os,City& city)//é‡è¼‰è¼¸å‡º
     {
         os<<city.city_ID<<city.city_Name<<city.pollute_Type<<city.pollute_Value<<city.polluteLevelRome<<city.polluteLevel
         <<city.year<<city.month<<city.day;
         return os;
     }
-    City()//˜‹Ôìº¯”µ
+    City()//æ§‹é€ å‡½æ•¸
     {
         city_Name="";
         city_ID="";
@@ -56,30 +56,30 @@ public:
         day=1;
     }
 
-    ~City() {} //Îö˜‹º¯”µ
+    ~City() {} //ææ§‹å‡½æ•¸
 };
 
-vector<City> dataTable;	//™nÖĞµÄËùÓĞÙYÁÏ±í
-set<string> s_city;		//¸÷‚€³ÇÊĞÃû×Ö¼¯ºÏ
+vector<City> dataTable;	//æª”ä¸­çš„æ‰€æœ‰è³‡æ–™è¡¨
+set<string> s_city;		//å„å€‹åŸå¸‚åå­—é›†åˆ
 
-void showMenu()//³ÌÊ½é_Ê¼½éÃæï@Ê¾
+void showMenu()//ç¨‹å¼é–‹å§‹ä»‹é¢é¡¯ç¤º
 {
-    cout<<"   ¹¦ÄÜßx“ñ£º "<<endl;
-    cout<<"1¡¢ÆÕÍ¨²éÔƒ"<<endl;
-    cout<<"2¡¢½yÓ‹²éÔƒ"<<endl;
-    cout<<"3¡¢ÅÅĞò²éÔƒ"<<endl;
-    cout<<"4¡¢ÍË³öÏµ½y"<<endl;
+    cout<<"   åŠŸèƒ½é¸æ“‡ï¼š "<<endl;
+    cout<<"1ã€æ™®é€šæŸ¥è©¢"<<endl;
+    cout<<"2ã€çµ±è¨ˆæŸ¥è©¢"<<endl;
+    cout<<"3ã€æ’åºæŸ¥è©¢"<<endl;
+    cout<<"4ã€é€€å‡ºç³»çµ±"<<endl;
 }
 
 
-bool fileRead()//™n×xÈëº¯”µ
+bool fileRead()//æª”è®€å…¥å‡½æ•¸
 {
     ifstream fin("data.txt");
     while(!fin.eof())
     {
         City city;
         fin>>city;
-        dataTable.push_back(city);//„Ó‘B´æÈëê‡ÁĞ
+        dataTable.push_back(city);//å‹•æ…‹å­˜å…¥é™£åˆ—
         s_city.insert(city.city_Name);
     }
 
@@ -88,7 +88,7 @@ bool fileRead()//™n×xÈëº¯”µ
 }
 
 
-int GetWeek(int mouth,int day)//«@È¡ÖÜ”µ
+int GetWeek(int mouth,int day)//ç²å–å‘¨æ•¸
 {
     int time=0;
 
@@ -103,7 +103,7 @@ int GetWeek(int mouth,int day)//«@È¡ÖÜ”µ
 
 }
 
-QUARTER GetQuarter(int month)//¸ù“şÔÂ·İÈ¡¼¾¶È
+QUARTER GetQuarter(int month)//æ ¹æ“šæœˆä»½å–å­£åº¦
 {
     QUARTER TYPE;
     switch (month)
@@ -111,55 +111,55 @@ QUARTER GetQuarter(int month)//¸ù“şÔÂ·İÈ¡¼¾¶È
     case JAN:
     case FEB:
     case MAR:
-        TYPE=FIRST;//µÚÒ»¼¾¶È
+        TYPE=FIRST;//ç¬¬ä¸€å­£åº¦
         break;
     case APR:
     case MAY:
     case JUN:
-        TYPE=SECOND;//µÚ¶ş¼¾¶È
+        TYPE=SECOND;//ç¬¬äºŒå­£åº¦
         break;
     case JUL:
     case AUG:
     case SEP:
-        TYPE=THIRD;//µÚÈı¼¾¶È
+        TYPE=THIRD;//ç¬¬ä¸‰å­£åº¦
         break;
     case OCT:
     case NOV:
     case DEC:
-        TYPE=FOURTH;//µÚËÄ¼¾¶È
+        TYPE=FOURTH;//ç¬¬å››å­£åº¦
         break;
     default:
-        cout<<"error input£¡"<<endl;
+        cout<<"error inputï¼"<<endl;
     }
 
     return TYPE;
 }
 
-QUARTER GetQuarter2(int jidu)//«@È¡¼¾¶ÈÖµ2
+QUARTER GetQuarter2(int jidu)//ç²å–å­£åº¦å€¼2
 {
     QUARTER TYPE;
     switch (jidu)
     {
     case 1:
-        TYPE=FIRST;//µÚÒ»¼¾¶È
+        TYPE=FIRST;//ç¬¬ä¸€å­£åº¦
         break;
     case 2:
-        TYPE=SECOND;//µÚ¶ş¼¾¶È
+        TYPE=SECOND;//ç¬¬äºŒå­£åº¦
         break;
     case 3:
-        TYPE=THIRD;//µÚÈı¼¾¶È
+        TYPE=THIRD;//ç¬¬ä¸‰å­£åº¦
         break;
     case 4:
-        TYPE=FOURTH;//µÚËÄ¼¾¶È
+        TYPE=FOURTH;//ç¬¬å››å­£åº¦
         break;
     default:
-        cout<<"error input£¡"<<endl;
+        cout<<"error inputï¼"<<endl;
     }
 
     return TYPE;
 }
 
-QUERY_TYPE getQueryType(int type)//«@µÃÅÅĞòîĞÍ
+QUERY_TYPE getQueryType(int type)//ç²å¾—æ’åºé¡å‹
 {
     QUERY_TYPE ret;
     switch(type)
@@ -180,86 +180,86 @@ QUERY_TYPE getQueryType(int type)//«@µÃÅÅĞòîĞÍ
         ret=FOR_YEAR;
         break;
     default:
-        cout<<"error input£¡"<<endl;
+        cout<<"error inputï¼"<<endl;
 
     }
     return ret;
 }
 
-string getPollute_Type(int type)//«@µÃÎÛÈ¾îĞÍ
+string getPollute_Type(int type)//ç²å¾—æ±¡æŸ“é¡å‹
 {
     string ret;
     switch(type)
     {
     case 1:
-        ret="ƒ";
+        ret="å„ª";
         break;
     case 2:
-        ret="Á¼";
+        ret="è‰¯";
         break;
     case 3:
-        ret="İpÎ¢ÎÛÈ¾";
+        ret="è¼•å¾®æ±¡æŸ“";
         break;
     case 4:
-        ret="İp¶ÈÎÛÈ¾";
+        ret="è¼•åº¦æ±¡æŸ“";
         break;
     case 5:
-        ret="ÖĞ¶ÈÎÛÈ¾";
+        ret="ä¸­åº¦æ±¡æŸ“";
         break;
     case 6:
-        ret="ÖĞ¶ÈÖØÎÛÈ¾";
+        ret="ä¸­åº¦é‡æ±¡æŸ“";
         break;
     case 7:
-        ret="ÖØÎÛÈ¾";
+        ret="é‡æ±¡æŸ“";
         break;
     default:
-        cout<<"error input£¡"<<endl;
+        cout<<"error inputï¼"<<endl;
 
     }
     return ret;
 }
 
-//ÒÔÏÂÊÇÆÕÍ¨²éÔƒ
-void shownorm(vector<City> Table1, string City_Name)//ÆÕÍ¨ï@Ê¾º¯”µ
+//ä»¥ä¸‹æ˜¯æ™®é€šæŸ¥è©¢
+void shownorm(vector<City> Table1, string City_Name)//æ™®é€šé¡¯ç¤ºå‡½æ•¸
 {
 
     cout<<endl;
     if (Table1.size()==0)
     {
-        cout<<"›]ÓĞ´ËÓ›ä›"<<endl;
+        cout<<"æ²’æœ‰æ­¤è¨˜éŒ„"<<endl;
         return;
     }
-    cout<<"         "<<City_Name<<"£º"<<endl;
+    cout<<"         "<<City_Name<<"ï¼š"<<endl;
     for (size_t i=0; i!=Table1.size(); ++i )
     {
-        cout<<"2006Äê  "<<Table1[i].month<<"ÔÂ  "<<Table1[i].day<<"ÈÕ"<<endl;
-        cout<<"Ê×ÒªÎÛÈ¾Îï£º"<<setw(12)<<Table1[i].pollute_Type<<endl;
-        cout<<"ÎÛÈ¾Ö¸”µ£º"<<setw(14)<<Table1[i].pollute_Value<<endl;
-        cout<<"ÎÛÈ¾Îï¼‰„e£º"<<setw(12)<<Table1[i].polluteLevelRome<<endl;
-        cout<<"¿Õšâ î›r£º"<<setw(14)<<Table1[i].polluteLevel<<endl<<endl;
+        cout<<"2006å¹´  "<<Table1[i].month<<"æœˆ  "<<Table1[i].day<<"æ—¥"<<endl;
+        cout<<"é¦–è¦æ±¡æŸ“ç‰©ï¼š"<<setw(12)<<Table1[i].pollute_Type<<endl;
+        cout<<"æ±¡æŸ“æŒ‡æ•¸ï¼š"<<setw(14)<<Table1[i].pollute_Value<<endl;
+        cout<<"æ±¡æŸ“ç‰©ç´šåˆ¥ï¼š"<<setw(12)<<Table1[i].polluteLevelRome<<endl;
+        cout<<"ç©ºæ°£ç‹€æ³ï¼š"<<setw(14)<<Table1[i].polluteLevel<<endl<<endl;
     }
 }
 
-bool normInquire(vector<City> TABLE,string City_Name,QUERY_TYPE type=FOR_DAY)//µÚÒ»‚€ÒªÇóÆÕÍ¨²éÔƒº¯”µ
+bool normInquire(vector<City> TABLE,string City_Name,QUERY_TYPE type=FOR_DAY)//ç¬¬ä¸€å€‹è¦æ±‚æ™®é€šæŸ¥è©¢å‡½æ•¸
 {
-    vector<City> oneCityTable;//Ò»‚€³ÇÊĞµÄcity½MºÏ
-    oneCityTable.clear();     //Çå¿Õ
+    vector<City> oneCityTable;//ä¸€å€‹åŸå¸‚çš„cityçµ„åˆ
+    oneCityTable.clear();     //æ¸…ç©º
 
-    vector<City> oneTable;//Ïë«@È¡µÄ³ÇÊĞ½MºÏ£¨Ò»ÖÜ£¬Ò»ÔÂ£¬Ò»¼¾¶È£¬»òÕßÊÇÒ»Äê £©
+    vector<City> oneTable;//æƒ³ç²å–çš„åŸå¸‚çµ„åˆï¼ˆä¸€å‘¨ï¼Œä¸€æœˆï¼Œä¸€å­£åº¦ï¼Œæˆ–è€…æ˜¯ä¸€å¹´ ï¼‰
     oneTable.clear();
 
     for (vector<City>::iterator iter=TABLE.begin(); iter!=TABLE.end(); ++iter)
     {
         if ((*iter).city_Name == City_Name)
         {
-            oneCityTable.push_back(*iter);//µÃµ½onecitytable
+            oneCityTable.push_back(*iter);//å¾—åˆ°onecitytable
         }
     }
     switch (type)
     {
     case FOR_DAY:
     {
-        cout<<"İ”ÈëÈÕÆÚ£¨ÔÂ ÈÕ£©£º"<<endl;//Ìì²éÔƒ
+        cout<<"è¼¸å…¥æ—¥æœŸï¼ˆæœˆ æ—¥ï¼‰ï¼š"<<endl;//å¤©æŸ¥è©¢
         int mo,da;
         cin>>mo>>da;
         for (vector<City>::iterator One_iter=oneCityTable.begin(); One_iter!=oneCityTable.end(); ++One_iter)
@@ -274,7 +274,7 @@ bool normInquire(vector<City> TABLE,string City_Name,QUERY_TYPE type=FOR_DAY)//µ
     }
     case FOR_WEEK:
     {
-        cout<<"İ”Èë²éÔƒµÚ×ÖÜ(x <= 53)£º"<<endl;//ÖÜ²éÔƒ
+        cout<<"è¼¸å…¥æŸ¥è©¢ç¬¬å¹¾å‘¨(x <= 53)ï¼š"<<endl;//å‘¨æŸ¥è©¢
         int week;
         cin>>week;
         for (vector<City>::iterator One_iter=oneCityTable.begin(); One_iter!=oneCityTable.end(); ++One_iter)
@@ -289,7 +289,7 @@ bool normInquire(vector<City> TABLE,string City_Name,QUERY_TYPE type=FOR_DAY)//µ
     }
     case FOR_MONTH:
     {
-        cout<<"İ”Èë²éÔƒÔÂ·İ£º"<<endl;//ÔÂ²éÔƒ
+        cout<<"è¼¸å…¥æŸ¥è©¢æœˆä»½ï¼š"<<endl;//æœˆæŸ¥è©¢
         int month;
         cin>>month;
         for (vector<City>::iterator One_iter=oneCityTable.begin(); One_iter!=oneCityTable.end(); ++One_iter)
@@ -306,7 +306,7 @@ bool normInquire(vector<City> TABLE,string City_Name,QUERY_TYPE type=FOR_DAY)//µ
     {
         int jidu;
         QUARTER type;
-        cout<<"İ”Èë²éÔƒ¼¾¶È(x <= 4)£º"<<endl;//¼¾¶È²éÔƒ
+        cout<<"è¼¸å…¥æŸ¥è©¢å­£åº¦(x <= 4)ï¼š"<<endl;//å­£åº¦æŸ¥è©¢
         cin>>jidu;
         type=GetQuarter2(jidu);
 
@@ -330,26 +330,26 @@ bool normInquire(vector<City> TABLE,string City_Name,QUERY_TYPE type=FOR_DAY)//µ
         cout<<"error input!"<<endl;
         return false;
     }
-    }//½YÊøswitch
+    }//çµæŸswitch
     return true;
 }
 
-//ÒÔÏÂ ÊÇ ½yÓ‹º¯”µ
-//½yÓ‹²éÔƒ1
-void statisticsDisplay(map<string,int> result,string city_Name)//½yÓ‹İ”³ö
+//ä»¥ä¸‹ æ˜¯ çµ±è¨ˆå‡½æ•¸
+//çµ±è¨ˆæŸ¥è©¢1
+void statisticsDisplay(map<string,int> result,string city_Name)//çµ±è¨ˆè¼¸å‡º
 {
     cout<<endl;
-    cout<<"      "<<city_Name<<"£º"<<endl;
+    cout<<"      "<<city_Name<<"ï¼š"<<endl;
     for (map<string,int>::iterator mapIter=result.begin(); mapIter!=result.end(); ++mapIter)
     {
-        cout<<setw(10)<<(*mapIter).first<<setw(2)<<"£º"<<setw(12)<<(*mapIter).second<<endl;
+        cout<<setw(10)<<(*mapIter).first<<setw(2)<<"ï¼š"<<setw(12)<<(*mapIter).second<<endl;
     }
 }
 
 bool statisticQuery(vector<City> table,const string city_Name,QUERY_TYPE type=FOR_WEEK)
 {
     vector<City> oneCityTable;
-    oneCityTable.clear();//Çå¿Õ
+    oneCityTable.clear();//æ¸…ç©º
     for (vector<City>::iterator iter=table.begin(); iter!=table.end(); ++iter)
     {
         if ((*iter).city_Name == city_Name)
@@ -360,19 +360,19 @@ bool statisticQuery(vector<City> table,const string city_Name,QUERY_TYPE type=FO
 
     map<string,int> queryResult;
     queryResult.clear();
-    queryResult["ƒ"]=0;
-    queryResult["Á¼"]=0;
-    queryResult["İpÎ¢ÎÛÈ¾"]=0;
-    queryResult["İp¶ÈÎÛÈ¾"]=0;
-    queryResult["ÖĞ¶ÈÎÛÈ¾"]=0;
-    queryResult["ÖĞ¶ÈÖØÎÛÈ¾"]=0;
-    queryResult["ÖØÎÛÈ¾"]=0;
+    queryResult["å„ª"]=0;
+    queryResult["è‰¯"]=0;
+    queryResult["è¼•å¾®æ±¡æŸ“"]=0;
+    queryResult["è¼•åº¦æ±¡æŸ“"]=0;
+    queryResult["ä¸­åº¦æ±¡æŸ“"]=0;
+    queryResult["ä¸­åº¦é‡æ±¡æŸ“"]=0;
+    queryResult["é‡æ±¡æŸ“"]=0;
     switch (type)
     {
     case FOR_WEEK:
     {
         int week;
-        cout<<"İ”ÈëÖÜ¾Ì–(<= 53)£º"<<endl;
+        cout<<"è¼¸å…¥å‘¨ç·¨è™Ÿ(<= 53)ï¼š"<<endl;
         cin>>week;
 
         for (size_t i=0; i!=oneCityTable.size(); ++i)
@@ -388,7 +388,7 @@ bool statisticQuery(vector<City> table,const string city_Name,QUERY_TYPE type=FO
     case FOR_MONTH:
     {
         int month;
-        cout<<"İ”ÈëÔÂ¾Ì–£º"<<endl;
+        cout<<"è¼¸å…¥æœˆç·¨è™Ÿï¼š"<<endl;
         cin>>month;
 
         for (size_t i=0; i!=oneCityTable.size(); ++i)
@@ -404,7 +404,7 @@ bool statisticQuery(vector<City> table,const string city_Name,QUERY_TYPE type=FO
     case FOR_QUARTER:
     {
         int quarter;
-        cout<<"İ”ÈëµÚ×¼¾¶È£º"<<endl;
+        cout<<"è¼¸å…¥ç¬¬å¹¾å­£åº¦ï¼š"<<endl;
         cin>>quarter;
 
         for (size_t i=0; i!=oneCityTable.size(); ++i)
@@ -421,7 +421,7 @@ bool statisticQuery(vector<City> table,const string city_Name,QUERY_TYPE type=FO
     case FOR_YEAR:
     {
         int year;
-        cout<<"İ”ÈëµÚ×Äê£º"<<endl;
+        cout<<"è¼¸å…¥ç¬¬å¹¾å¹´ï¼š"<<endl;
         cin>>year;
 
         for (size_t i=0; i!=oneCityTable.size(); ++i)
@@ -443,29 +443,29 @@ bool statisticQuery(vector<City> table,const string city_Name,QUERY_TYPE type=FO
     return true;
 }
 
-//½yÓ‹²éÔƒ2
-void statisticsDisplay2(map<string,int> result,string PolluLevel)//½yÓ‹µÄµÚ¶ş·NÇé›rµÄ½yÓ‹ï@Ê¾º¯”µ
+//çµ±è¨ˆæŸ¥è©¢2
+void statisticsDisplay2(map<string,int> result,string PolluLevel)//çµ±è¨ˆçš„ç¬¬äºŒç¨®æƒ…æ³çš„çµ±è¨ˆé¡¯ç¤ºå‡½æ•¸
 {
     cout<<endl;
-    cout<<"        Æ·Ù|é"<<PolluLevel<<endl;
+    cout<<"        å“è³ªç‚º"<<PolluLevel<<endl;
     for (map<string,int>::iterator mapIter=result.begin(); mapIter!=result.end(); ++mapIter)
     {
-        cout<<setw(8)<<(*mapIter).first<<setw(2)<<"£º"<<setw(12)<<(*mapIter).second<<endl;
+        cout<<setw(8)<<(*mapIter).first<<setw(2)<<"ï¼š"<<setw(12)<<(*mapIter).second<<endl;
     }
 }
 
-bool statisticQuery2(vector<City> table,string PolluLevel,QUERY_TYPE type=FOR_DAY,int T=0)//¸ù“şÎÛÈ¾îĞÍµÄ½yÓ‹º¯”µ
+bool statisticQuery2(vector<City> table,string PolluLevel,QUERY_TYPE type=FOR_DAY,int T=0)//æ ¹æ“šæ±¡æŸ“é¡å‹çš„çµ±è¨ˆå‡½æ•¸
 {
 
     vector<City> onePolluteTable;
-    onePolluteTable.clear();//Çå¿Õ
+    onePolluteTable.clear();//æ¸…ç©º
 
 
     for (vector<City>::iterator iter=table.begin(); iter!=table.end(); ++iter)
     {
         if ((*iter).polluteLevel == PolluLevel)
         {
-            onePolluteTable.push_back(*iter);//«@È¡Ò»·NÎÛÈ¾îĞÍµÄ³ÇÊĞ
+            onePolluteTable.push_back(*iter);//ç²å–ä¸€ç¨®æ±¡æŸ“é¡å‹çš„åŸå¸‚
         }
     }
 
@@ -476,14 +476,14 @@ bool statisticQuery2(vector<City> table,string PolluLevel,QUERY_TYPE type=FOR_DA
         queryResult.insert(pair<string,int>((*ITER),0));
 
     }
-    map<string,int> queryPlay;//ÎÛÈ¾Ìì”µ´óì¶Ä³Ò»‚€Öµ µÄ•rºò ÒªshowplayµÄº¯”µ
+    map<string,int> queryPlay;//æ±¡æŸ“å¤©æ•¸å¤§æ–¼æŸä¸€å€‹å€¼ çš„æ™‚å€™ è¦showplayçš„å‡½æ•¸
     queryPlay.clear();
     switch (type)
     {
     case FOR_WEEK:
     {
         int week;
-        cout<<"İ”ÈëÖÜ¾Ì–(<= 53)£º"<<endl;
+        cout<<"è¼¸å…¥å‘¨ç·¨è™Ÿ(<= 53)ï¼š"<<endl;
         cin>>week;
 
         cout<<onePolluteTable.size()<<endl;
@@ -508,7 +508,7 @@ bool statisticQuery2(vector<City> table,string PolluLevel,QUERY_TYPE type=FOR_DA
     case FOR_MONTH:
     {
         int month;
-        cout<<"İ”ÈëÔÂ¾Ì–£º"<<endl;
+        cout<<"è¼¸å…¥æœˆç·¨è™Ÿï¼š"<<endl;
         cin>>month;
 
         for (size_t i=0; i!=onePolluteTable.size(); ++i)
@@ -532,7 +532,7 @@ bool statisticQuery2(vector<City> table,string PolluLevel,QUERY_TYPE type=FOR_DA
     case FOR_QUARTER:
     {
         int quarter;
-        cout<<"İ”ÈëµÚ×¼¾¶È£º"<<endl;
+        cout<<"è¼¸å…¥ç¬¬å¹¾å­£åº¦ï¼š"<<endl;
         cin>>quarter;
 
         for (size_t i=0; i!=onePolluteTable.size(); ++i)
@@ -557,7 +557,7 @@ bool statisticQuery2(vector<City> table,string PolluLevel,QUERY_TYPE type=FOR_DA
     case FOR_YEAR:
     {
         int year;
-        cout<<"İ”ÈëµÚ×Äê£º"<<endl;
+        cout<<"è¼¸å…¥ç¬¬å¹¾å¹´ï¼š"<<endl;
         cin>>year;
 
         for (size_t i=0; i!=onePolluteTable.size(); ++i)
@@ -586,7 +586,7 @@ bool statisticQuery2(vector<City> table,string PolluLevel,QUERY_TYPE type=FOR_DA
     return true;
 }
 
-//µÚÈı‚€ÒªÇóÊÇÅÅĞò²éÔƒ º¯”µ
+//ç¬¬ä¸‰å€‹è¦æ±‚æ˜¯æ’åºæŸ¥è©¢ å‡½æ•¸
 int cmp(const pair<std::string, int>& x, const pair<string, int>& y)
 {
     return x.second < y.second;
@@ -598,7 +598,7 @@ void sortMapByValue(map<string, int>& tMap, vector<pair<string, int> >& tVector)
     {
         tVector.push_back(make_pair(curr->first, curr->second));
     }
-    sort(tVector.begin(), tVector.end(), cmp);//×Ô¼ºŒ‘ÅÅĞòÑİËã·¨
+    sort(tVector.begin(), tVector.end(), cmp);//è‡ªå·±å¯«æ’åºæ¼”ç®—æ³•
 }
 
 void HeapAdjust(vector<pair<string ,int> > &Heap, int s, int m)
@@ -608,7 +608,7 @@ void HeapAdjust(vector<pair<string ,int> > &Heap, int s, int m)
     {
         if (j < m - 1 && Heap[j + 1].second> Heap[j].second)
             j++;
-        if ( Heap[s].second > Heap[j].second)//Éú³É´ó¸ù¶Ñ
+        if ( Heap[s].second > Heap[j].second)//ç”Ÿæˆå¤§æ ¹å †
             break;
         swap(Heap[s],Heap[j]);
         s = j;
@@ -640,7 +640,7 @@ vector<pair<string ,int> > HeapSortMinK(vector<pair<string ,int> > &Heap,int k)
         }
     }
 
-    sort(minK.begin(),minK.end(),cmp);//Œ¢minKÅÅĞò£¬ÒòéÇó³öµÄK‚€×îĞ¡ÖµÊÇyĞòµÄ
+    sort(minK.begin(),minK.end(),cmp);//å°‡minKæ’åºï¼Œå› ç‚ºæ±‚å‡ºçš„Kå€‹æœ€å°å€¼æ˜¯äº‚åºçš„
 
 
     return minK;
@@ -661,15 +661,15 @@ vector<pair<string ,int> > SortByValue(map<string, int>& tMap, vector<pair<strin
 void sortDisplay(vector<pair<string,int> > result,int rankCount)
 {
     cout<<endl;
-    cout<<"            ÅÅĞĞ°ñÈçÏÂ"<<endl;
+    cout<<"            æ’è¡Œæ¦œå¦‚ä¸‹"<<endl;
     for (size_t i=0; i<result.size(); i++)
     {
-        cout<<"µÚ"<<i+1<<"Ãû£º"<<setw(16)<<result[i].first<<setw(12)<<result[i].second<<endl;
+        cout<<"ç¬¬"<<i+1<<"åï¼š"<<setw(16)<<result[i].first<<setw(12)<<result[i].second<<endl;
     }
     cout<<"***************************************"<<endl;
 }
 
-bool sortQuery(vector<City> table,int rankCount,QUERY_TYPE type=FOR_WEEK)//ÅÅĞòº¯”µ
+bool sortQuery(vector<City> table,int rankCount,QUERY_TYPE type=FOR_WEEK)//æ’åºå‡½æ•¸
 {
     vector<pair<string,int> > tVector;
     map<string,int> queryResult;
@@ -680,7 +680,7 @@ bool sortQuery(vector<City> table,int rankCount,QUERY_TYPE type=FOR_WEEK)//ÅÅĞòº
     case FOR_WEEK:
     {
         int week;
-        cout<<"İ”ÈëÖÜ”µ(<=53)£º";
+        cout<<"è¼¸å…¥å‘¨æ•¸(<=53)ï¼š";
         cin>>week;
         for (size_t i=0; i!=table.size(); ++i)
         {
@@ -707,7 +707,7 @@ bool sortQuery(vector<City> table,int rankCount,QUERY_TYPE type=FOR_WEEK)//ÅÅĞòº
     {
 
         int month;
-        cout<<"İ”ÈëÔÂ·İ£º";
+        cout<<"è¼¸å…¥æœˆä»½ï¼š";
         cin>>month;
         for (size_t i=0; i!=table.size(); ++i)
         {
@@ -733,7 +733,7 @@ bool sortQuery(vector<City> table,int rankCount,QUERY_TYPE type=FOR_WEEK)//ÅÅĞòº
     case FOR_QUARTER:
     {
         int quarter;
-        cout<<"İ”Èë¼¾¶È£º";
+        cout<<"è¼¸å…¥å­£åº¦ï¼š";
         cin>>quarter;
         for (size_t i=0; i!=table.size(); ++i)
         {
@@ -762,7 +762,7 @@ bool sortQuery(vector<City> table,int rankCount,QUERY_TYPE type=FOR_WEEK)//ÅÅĞòº
     {
 
         int  year;
-        cout<<"İ”ÈëÄê·İ£º";
+        cout<<"è¼¸å…¥å¹´ä»½ï¼š";
         cin>>year;
         for (size_t i=0; i!=table.size(); ++i)
         {
@@ -800,9 +800,9 @@ int main()
     int time;
     int rankLen;
     string city_Name;
-    cout<<"×xÈë”µ“ş¡£¡£¡£¡£¡£¡£"<<endl;
-    fileRead();//×xÈëÎÄ¼ş
-    cout<<"×xÈë³É¹¦£¡"<<endl;
+    cout<<"è®€å…¥æ•¸æ“šã€‚ã€‚ã€‚ã€‚ã€‚ã€‚"<<endl;
+    fileRead();//è®€å…¥æ–‡ä»¶
+    cout<<"è®€å…¥æˆåŠŸï¼"<<endl;
     system("cls");
     while(1)
     {
@@ -815,25 +815,25 @@ int main()
             char ch;
             while (1)
             {
-                cout<<"İ”Èë³ÇÊĞÃû·Q£º";
+                cout<<"è¼¸å…¥åŸå¸‚åç¨±ï¼š";
                 cin>>city_Name;
-                if (s_city.find(city_Name) ==s_city.end())//Œ¤ÕÒÔ“³ÇÊĞ
+                if (s_city.find(city_Name) ==s_city.end())//å°‹æ‰¾è©²åŸå¸‚
                 {
-                    cout<<"›]ÓĞÔ“³ÇÊĞ£¬ÕˆÖØĞÂİ”Èë£¡"<<endl;
+                    cout<<"æ²’æœ‰è©²åŸå¸‚ï¼Œè«‹é‡æ–°è¼¸å…¥ï¼"<<endl;
                     break;
                 }
-                cout<<"Õˆßx“ñ²éÔƒîĞÍ£º"<<endl;
-                cout<<"0¡¢²éÔƒÒ»Ìì"<<endl;
-                cout<<"1¡¢²éÔƒÒ»ÖÜ"<<endl;
-                cout<<"2¡¢²éÔƒÒ»ÔÂ"<<endl;
-                cout<<"3¡¢²éÔƒÒ»¼¾¶È"<<endl;
-                cout<<"4¡¢²éÔƒÒ»Äê"<<endl;
+                cout<<"è«‹é¸æ“‡æŸ¥è©¢é¡å‹ï¼š"<<endl;
+                cout<<"0ã€æŸ¥è©¢ä¸€å¤©"<<endl;
+                cout<<"1ã€æŸ¥è©¢ä¸€å‘¨"<<endl;
+                cout<<"2ã€æŸ¥è©¢ä¸€æœˆ"<<endl;
+                cout<<"3ã€æŸ¥è©¢ä¸€å­£åº¦"<<endl;
+                cout<<"4ã€æŸ¥è©¢ä¸€å¹´"<<endl;
                 cin>>queryType;
                 if (!normInquire(dataTable,city_Name,getQueryType(queryType)))
                 {
-                    cout<<"²éÔƒÊ§”¡£¬ÕˆÖØĞÂİ”Èë"<<endl;
+                    cout<<"æŸ¥è©¢å¤±æ•—ï¼Œè«‹é‡æ–°è¼¸å…¥"<<endl;
                 }
-                cout<<"ÊÇ·ñÍË³ö£¨Y/N£©"<<endl;
+                cout<<"æ˜¯å¦é€€å‡ºï¼ˆY/Nï¼‰"<<endl;
                 cin>>ch;
                 if(ch=='Y'||ch=='y') break;
             }
@@ -846,60 +846,60 @@ int main()
             while (1)
             {
                 int flag;
-                cout<<"İ”Èë²éÔƒƒÈÈİ£º"<<endl;
+                cout<<"è¼¸å…¥æŸ¥è©¢å…§å®¹ï¼š"<<endl;
                 cout<<endl;
-                cout<<"1¡¢½yÓ‹Ò»‚€³ÇÊĞÎÛÈ¾ î›r"<<endl<<endl;
-                cout<<"2¡¢İ”ÈëÎÛÈ¾ î›r²éÔƒ³ÇÊĞ"<<endl<<endl;
+                cout<<"1ã€çµ±è¨ˆä¸€å€‹åŸå¸‚æ±¡æŸ“ç‹€æ³"<<endl<<endl;
+                cout<<"2ã€è¼¸å…¥æ±¡æŸ“ç‹€æ³æŸ¥è©¢åŸå¸‚"<<endl<<endl;
                 cin>>flag;
                 if (flag==1)
                 {
-                    cout<<"İ”Èë³ÇÊĞÃû·Q£º";
+                    cout<<"è¼¸å…¥åŸå¸‚åç¨±ï¼š";
                     cin>>city_Name;
-                    if (s_city.find(city_Name) ==s_city.end())//Œ¤ÕÒÔ“³ÇÊĞ
+                    if (s_city.find(city_Name) ==s_city.end())//å°‹æ‰¾è©²åŸå¸‚
                     {
-                        cout<<"›]ÓĞÔ“³ÇÊĞ£¬ÕˆÖØĞÂİ”Èë£¡"<<endl;
+                        cout<<"æ²’æœ‰è©²åŸå¸‚ï¼Œè«‹é‡æ–°è¼¸å…¥ï¼"<<endl;
                         break;
                     }
-                    cout<<"Õˆßx“ñ²éÔƒîĞÍ£º"<<endl;
-                    cout<<"1¡¢½yÓ‹Ò»ÖÜ"<<endl;
-                    cout<<"2¡¢½yÓ‹Ò»ÔÂ"<<endl;
-                    cout<<"3¡¢½yÓ‹Ò»¼¾¶È"<<endl;
-                    cout<<"4¡¢½yÓ‹Ò»Äê"<<endl;
+                    cout<<"è«‹é¸æ“‡æŸ¥è©¢é¡å‹ï¼š"<<endl;
+                    cout<<"1ã€çµ±è¨ˆä¸€å‘¨"<<endl;
+                    cout<<"2ã€çµ±è¨ˆä¸€æœˆ"<<endl;
+                    cout<<"3ã€çµ±è¨ˆä¸€å­£åº¦"<<endl;
+                    cout<<"4ã€çµ±è¨ˆä¸€å¹´"<<endl;
                     cin>>queryType;
                     if (!statisticQuery(dataTable,city_Name,getQueryType(queryType)))
                     {
-                        cout<<"²éÔƒÊ§”¡£¬ÕˆÖØĞÂİ”Èë"<<endl;
+                        cout<<"æŸ¥è©¢å¤±æ•—ï¼Œè«‹é‡æ–°è¼¸å…¥"<<endl;
                     }
                 }
                 if (flag==2)
                 {
-                    cout<<"Õˆßx“ñ²éÔƒ¹ ‡ú£º"<<endl;
-                    cout<<"1¡¢ÖÜ²éÔƒ"<<endl;
-                    cout<<"2¡¢ÔÂ²éÔƒ"<<endl;
-                    cout<<"3¡¢¼¾¶È²éÔƒ"<<endl;
-                    cout<<"4¡¢Äê²éÔƒ"<<endl;
+                    cout<<"è«‹é¸æ“‡æŸ¥è©¢ç¯„åœï¼š"<<endl;
+                    cout<<"1ã€å‘¨æŸ¥è©¢"<<endl;
+                    cout<<"2ã€æœˆæŸ¥è©¢"<<endl;
+                    cout<<"3ã€å­£åº¦æŸ¥è©¢"<<endl;
+                    cout<<"4ã€å¹´æŸ¥è©¢"<<endl;
                     cin>>queryType;
-                    cout<<"Õˆßx“ñ²éÔƒµÄ¿ÕšâÆ·Ù| î›r£º"<<endl;
-                    cout<<"1¡¢ƒ"<<endl;
-                    cout<<"2¡¢Á¼"<<endl;
-                    cout<<"3¡¢İpÎ¢ÎÛÈ¾"<<endl;
-                    cout<<"4¡¢İp¶ÈÎÛÈ¾"<<endl;
-                    cout<<"5¡¢ÖĞ¶ÈÎÛÈ¾"<<endl;
-                    cout<<"6¡¢ÖĞ¶ÈÖØÎÛÈ¾"<<endl;
-                    cout<<"7¡¢ÖØÎÛÈ¾"<<endl;
+                    cout<<"è«‹é¸æ“‡æŸ¥è©¢çš„ç©ºæ°£å“è³ªç‹€æ³ï¼š"<<endl;
+                    cout<<"1ã€å„ª"<<endl;
+                    cout<<"2ã€è‰¯"<<endl;
+                    cout<<"3ã€è¼•å¾®æ±¡æŸ“"<<endl;
+                    cout<<"4ã€è¼•åº¦æ±¡æŸ“"<<endl;
+                    cout<<"5ã€ä¸­åº¦æ±¡æŸ“"<<endl;
+                    cout<<"6ã€ä¸­åº¦é‡æ±¡æŸ“"<<endl;
+                    cout<<"7ã€é‡æ±¡æŸ“"<<endl;
                     cin>>pollute_Type;
-                    cout<<"Õˆ²åÈëÎÛÈ¾îĞÍµÄÌì”µ£º"<<endl<<endl;
-                    cout<<"×¢Òâ£ºÈç¹ûÊÇÖÜ²éÔƒ£¬Ìì”µ <= 7 "<<endl<<endl;
-                    cout<<"      Èç¹ûÊÇÔÂ²éÔƒ£¬Ìì”µ <= the day of month"<<endl<<endl;
-                    cout<<"      Èç¹ûÊÇ¼¾¶È²éÔƒ£¬Ìì”µ <= the day of quarter"<<endl<<endl;
-                    cout<<"      Èç¹ûÊÇÄê²éÔƒ£¬Ìì”µ <= 365 "<<endl<<endl;
+                    cout<<"è«‹æ’å…¥æ±¡æŸ“é¡å‹çš„å¤©æ•¸ï¼š"<<endl<<endl;
+                    cout<<"æ³¨æ„ï¼šå¦‚æœæ˜¯å‘¨æŸ¥è©¢ï¼Œå¤©æ•¸ <= 7 "<<endl<<endl;
+                    cout<<"      å¦‚æœæ˜¯æœˆæŸ¥è©¢ï¼Œå¤©æ•¸ <= the day of month"<<endl<<endl;
+                    cout<<"      å¦‚æœæ˜¯å­£åº¦æŸ¥è©¢ï¼Œå¤©æ•¸ <= the day of quarter"<<endl<<endl;
+                    cout<<"      å¦‚æœæ˜¯å¹´æŸ¥è©¢ï¼Œå¤©æ•¸ <= 365 "<<endl<<endl;
                     cin>>time;
                     if (!statisticQuery2(dataTable,getPollute_Type(pollute_Type),getQueryType(queryType),time))
                     {
-                        cout<<"²éÔƒÊ§”¡£¬ÕˆÖØĞÂİ”Èë"<<endl;
+                        cout<<"æŸ¥è©¢å¤±æ•—ï¼Œè«‹é‡æ–°è¼¸å…¥"<<endl;
                     }
                 }
-                cout<<"ÊÇ·ñÍË³ö£¨Y/N£©"<<endl;
+                cout<<"æ˜¯å¦é€€å‡ºï¼ˆY/Nï¼‰"<<endl;
                 cin>>ch;
                 if(ch=='Y'||ch=='y') break;
             }
@@ -909,34 +909,34 @@ int main()
         case 3:
         {
             char ch;
-            while (1)//ÅÅĞò²éÔƒ
+            while (1)//æ’åºæŸ¥è©¢
             {
-                cout<<"İ”ÈëÅÅĞĞ°ñéL¶È£º";
+                cout<<"è¼¸å…¥æ’è¡Œæ¦œé•·åº¦ï¼š";
                 cin>>rankLen;
-                cout<<"Õˆßx“ñ²éÔƒîĞÍ£º"<<endl;
-                cout<<"1¡¢Ò»ÖÜÅÅĞĞ"<<endl;
-                cout<<"2¡¢Ò»ÔÂÅÅĞĞ"<<endl;
-                cout<<"3¡¢Ò»¼¾¶ÈÅÅĞĞ"<<endl;
-                cout<<"4¡¢Ò»ÄêÅÅĞĞ"<<endl;
+                cout<<"è«‹é¸æ“‡æŸ¥è©¢é¡å‹ï¼š"<<endl;
+                cout<<"1ã€ä¸€å‘¨æ’è¡Œ"<<endl;
+                cout<<"2ã€ä¸€æœˆæ’è¡Œ"<<endl;
+                cout<<"3ã€ä¸€å­£åº¦æ’è¡Œ"<<endl;
+                cout<<"4ã€ä¸€å¹´æ’è¡Œ"<<endl;
                 cin>>queryType;
                 if (!sortQuery(dataTable,rankLen,getQueryType(queryType)))
                 {
-                    cout<<"²éÔƒÊ§”¡£¬ÕˆÖØĞÂİ”Èë"<<endl;
+                    cout<<"æŸ¥è©¢å¤±æ•—ï¼Œè«‹é‡æ–°è¼¸å…¥"<<endl;
                 }
-                cout<<"ÊÇ·ñÍË³ö£¨Y/N£©"<<endl;
+                cout<<"æ˜¯å¦é€€å‡ºï¼ˆY/Nï¼‰"<<endl;
                 cin>>ch;
                 if(ch=='Y'||ch=='y') break;
             }
 
         }
-        system("cls");//ÇåÆÁ
+        system("cls");//æ¸…å±
         break;
         case 4:
-            cout<<"¸ĞÖxÄúµÄÊ¹ÓÃ£¡"<<endl;
+            cout<<"æ„Ÿè¬æ‚¨çš„ä½¿ç”¨ï¼"<<endl;
             exit(1);
             break;
         default:
-            cout<<"İ”ÈëåeÕ`£¡ÕˆÖØĞÂİ”Èë£¡"<<endl;
+            cout<<"è¼¸å…¥éŒ¯èª¤ï¼è«‹é‡æ–°è¼¸å…¥ï¼"<<endl;
             system("cls");
             break;
         }

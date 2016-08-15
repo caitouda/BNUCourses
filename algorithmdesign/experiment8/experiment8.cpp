@@ -1,13 +1,13 @@
-#include<stdio.h>
+ï»¿#include<stdio.h>
 #include<algorithm>
 using namespace std;
-struct wupin//ÓÃí´æ·ÅÎïÆ·µÄ˜ËÌ–¡¢ów·eºÍƒrÖµ
+struct wupin//ç”¨ä¾†å­˜æ”¾ç‰©å“çš„æ¨™è™Ÿã€é«”ç©å’Œåƒ¹å€¼
 {
     int m,w,v;
 };
 struct wupin wp[1000];
 int dp[1000][1000],top;
-void show(int N,int CC)//ÒÀ´Îßx“ñµÄÎïÆ·µÄ˜ËÌ–
+void show(int N,int CC)//ä¾æ¬¡é¸æ“‡çš„ç‰©å“çš„æ¨™è™Ÿ
 {
     if(N==0) return;
     if(dp[N-1][CC-wp[N].w]+wp[N].v==dp[N][CC])

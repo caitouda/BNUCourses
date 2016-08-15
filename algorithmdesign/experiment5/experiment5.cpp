@@ -1,17 +1,17 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<cstdlib>
 using namespace std;
 
 const int  DefaultSize = 10000;
 
-class dataList  			//ÙYÁÏ±íî¶¨Áx
+class dataList  			//è³‡æ–™è¡¨é¡å®šç¾©
 {
 private:
-    int Vector[10000];		//´æƒ¦ÅÅĞòÔªËØµÄÏòÁ¿
-    int maxSize; 			//ÏòÁ¿ÖĞ×î´óÔªËØ‚€”µ
-    int currentSize; 			//®”Ç°ÔªËØ‚€”µ
+    int Vector[10000];		//å­˜å„²æ’åºå…ƒç´ çš„å‘é‡
+    int maxSize; 			//å‘é‡ä¸­æœ€å¤§å…ƒç´ å€‹æ•¸
+    int currentSize; 			//ç•¶å‰å…ƒç´ å€‹æ•¸
 public:
-    dataList (int num)    //˜‹Ôìº¯”µ
+    dataList (int num)    //æ§‹é€ å‡½æ•¸
     {
         for(int i=0; i<num; i++)
         {
@@ -20,7 +20,7 @@ public:
     }
     int Length()
     {
-        return currentSize;    //È¡±íéL¶È
+        return currentSize;    //å–è¡¨é•·åº¦
     }
     void Swap (int& x, int& y)
     {
@@ -28,7 +28,7 @@ public:
         x = y;
         y = temp;
     }
-    int& operator [](int i) 	//È¡µÚi‚€ÔªËØ
+    int& operator [](int i) 	//å–ç¬¬iå€‹å…ƒç´ 
     {
         return Vector[i];
     }
@@ -38,12 +38,12 @@ public:
 
 int dataList::BinarySearch(int k1, const int low, const int high )
 {
-//¶ş·Ö™zË÷µÄßfŞ’ÑİËã·¨£¬ÓÃµ½EµÄÖØİd²Ù×÷¡°<¡±ºÍ¡°>¡±
-    int mid = 0;		        //ÔªËØĞòÌ–Ä1é_Ê¼
+//äºŒåˆ†æª¢ç´¢çš„éè¿´æ¼”ç®—æ³•ï¼Œç”¨åˆ°Eçš„é‡è¼‰æ“ä½œâ€œ<â€å’Œâ€œ>â€
+    int mid = 0;		        //å…ƒç´ åºè™Ÿå¾1é–‹å§‹
     if (low <= high)
     {
         mid = (low + high)/2;
-        if (Vector[mid-1] < k1)     //ÔªËØĞòÌ–ÅcÏÂ˜Ë²îÒ»
+        if (Vector[mid-1] < k1)     //å…ƒç´ åºè™Ÿèˆ‡ä¸‹æ¨™å·®ä¸€
             mid = BinarySearch (k1, mid +1, high);
         else if (Vector[mid-1] > k1)
             mid = BinarySearch (k1, low, mid -1);
@@ -53,18 +53,18 @@ int dataList::BinarySearch(int k1, const int low, const int high )
 
 int dataList::BinarySearch (int k1,int num)
 {
-//¶ş·Ö™zË÷µÄ·´¸²ß\ËãÑİËã·¨£¬ÓÃµ½EµÄÖØİd²Ù×÷¡°<¡±ºÍ¡°>¡±
-    int high = num,  low = 1,  mid;    //ÔªËØĞòÌ–Ä1é_Ê¼
+//äºŒåˆ†æª¢ç´¢çš„åè¦†é‹ç®—æ¼”ç®—æ³•ï¼Œç”¨åˆ°Eçš„é‡è¼‰æ“ä½œâ€œ<â€å’Œâ€œ>â€
+    int high = num,  low = 1,  mid;    //å…ƒç´ åºè™Ÿå¾1é–‹å§‹
     while (low <= high)
     {
         mid = (low + high) / 2;
         if (Vector[mid-1] < k1) low = mid+1;
-        //ÓÒ¿sËÑË÷…^ég
+        //å³ç¸®æœç´¢å€é–“
         else if (Vector[mid-1] > k1) high = mid-1;
-        //×ó¿sËÑË÷…^ég
-        else return mid;                 //ËÑË÷³É¹¦
+        //å·¦ç¸®æœç´¢å€é–“
+        else return mid;                 //æœç´¢æˆåŠŸ
     }
-    return 0;                                  //ËÑË÷Ê§”¡
+    return 0;                                  //æœç´¢å¤±æ•—
 }
 
 int main()

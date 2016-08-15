@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<cstring>
 using namespace std;
 
@@ -161,7 +161,7 @@ double good(char *c)
             move(f,s,i);
             break;
         default:
-            cout<<"·ûÌ–åeÕ`£¡"<<endl;
+            cout<<"ç«?å¶’æ‚·ã„"<<endl;
             break;
         }
     }
@@ -171,7 +171,7 @@ int main()
 {
     char str[100];
     double sum=0;
-    cout<<"Ý”ÈëÖÐ¾YËãÐgß\ËãÊ½£º"<<endl;
+    cout<<"?ï µç¬¢é‹°å‘¾èƒç¶…å‘¾å®’ã„©"<<endl;
     cin>>str;
     sum=good(str);
     cout<<str<<"="<<sum<<endl;

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include "MinHeap.h"
 #include "Huffman.h"
 #include "Huffmancode.h"
@@ -8,12 +8,12 @@ int main()
     int n;
     while(1)
     {
-        cout<<"ÕˆÝ”ÈëÙYÁÏ‚€”µ(®”Ý”Èë0„tÍË³ö£©£º";
+        cout<<"è«‹è¼¸å…¥è³‡æ–™å€‹æ•¸(ç•¶è¼¸å…¥0å‰‡é€€å‡ºï¼‰ï¼š";
         cin>>n;
         if(n==0)break;
         char str[n+1];
         int k[n+1];
-        cout<<"ÕˆÝ”ÈëÙYÁÏµÄ´úÌ–¼°Œ¦‘ªµÄ™àÖµ£º";
+        cout<<"è«‹è¼¸å…¥è³‡æ–™çš„ä»£è™ŸåŠå°æ‡‰çš„æ¬Šå€¼ï¼š";
         for(int i=1; i<=n; i++)
         {
             cin>>str[i];
@@ -22,10 +22,10 @@ int main()
         huffmancode<int> hfc(k,str,n);
         hfc.viewthecode();
         char st[100];
-        cout<<"ÕˆÝ”ÈëÄãÐèÒª¾Ž´aµÄ´ú´a£º";
+        cout<<"è«‹è¼¸å…¥ä½ éœ€è¦ç·¨ç¢¼çš„ä»£ç¢¼ï¼š";
         cin>>st;
         hfc.codethestr(st);
-        cout<<"ÕˆÝ”ÈëÄãÐèÒª·­×gµÄ´ú´a£º";
+        cout<<"è«‹è¼¸å…¥ä½ éœ€è¦ç¿»è­¯çš„ä»£ç¢¼ï¼š";
         cin>>st;
         hfc.decodethestr(st);
     }
